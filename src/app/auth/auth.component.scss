@@ -18,4 +18,12 @@
   .mat-card {
     border-radius: 16px !important;
   }
+  .mat-flat-button,
+  .mat-raised-button,
+  .mat-fab,
+  .mat-mini-fab {
+    color: #fff;
+    background-color: #589c2e;
+    border-radius: 100px !important;
+  }
 }
