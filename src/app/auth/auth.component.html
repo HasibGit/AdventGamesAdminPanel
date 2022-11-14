@@ -7,11 +7,15 @@
           <mat-label>Username</mat-label>
           <input matInput placeholder="Enter your username" formControlName="username">
         </mat-form-field>
-        <mat-form-field appearance="outline" style="margin-bottom: 24px">
+        <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
           <input matInput type="password" placeholder="Enter your password" formControlName="password">
         </mat-form-field>
-        <button mat-raised-button type="submit">LOGIN</button>
+        <mat-form-field appearance="outline" style="margin-bottom: 24px">
+          <mat-label>Company ID</mat-label>
+          <input matInput type="text" placeholder="Enter company passowrd" formControlName="companyId">
+        </mat-form-field>
+        <button mat-raised-button type="submit" [disabled]="form.invalid">LOGIN</button>
       </form>
     </div>
   </mat-card>
