@@ -17,4 +17,8 @@ export class AuthComponent implements OnInit {
       password: '',
     });
   }
+
+  login(){
+    
+  }
 }
