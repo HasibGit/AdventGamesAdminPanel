@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class AuthComponent implements OnInit {
   form!: FormGroup;
   isLoading: boolean = false;
+  errorMessage: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,8 +30,11 @@ export class AuthComponent implements OnInit {
     // console.log(this.form.getRawValue());
     this.isLoading = true;
     this.authService.login(this.form.getRawValue()).subscribe(
-      (resData) => {
+      (resData: any) => {
         console.log(resData);
+        if (resData.externalError && resData.externalError.length > 0) {
+          this.errorMessage = resData.externalError;
+        }
         this.isLoading = false;
       },
       (errorMessage) => {
