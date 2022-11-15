@@ -8,7 +8,7 @@ import { UserInfo } from '../interfaces/userInfo.interface';
   styleUrls: ['./game-selection.component.scss'],
 })
 export class GameSelectionComponent implements OnInit {
-  username: string = '';
+  userInfo: UserInfo;
 
   constructor(private appService: AppService) {}
 
@@ -17,7 +17,7 @@ export class GameSelectionComponent implements OnInit {
       .getUser()
       .pipe(take(1))
       .subscribe((res: UserInfo) => {
-        this.username = res.result.fullName;
+        this.userInfo = res;
       });
   }
 }

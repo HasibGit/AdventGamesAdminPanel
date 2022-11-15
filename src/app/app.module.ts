@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { NgxLoadingModule } from 'ngx-loading';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NgxLoadingModule } from 'ngx-loading';
     GameSelectionComponent,
     GameAnalyticsComponent,
     AuthComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

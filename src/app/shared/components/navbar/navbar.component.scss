@@ -1,0 +1,30 @@
+h1,
+h2,
+h3,
+p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+:host::ng-deep {
+  .mat-card {
+    padding: 24px !important;
+  }
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 10px !important;
+}
+
+.admin-chip {
+  border-radius: 100px;
+  padding: 6px 12px 6px 12px;
+  background-color: #e2f3d8;
+  span {
+    font-weight: 400;
+    font-size: 12px;
+    color: #246c0e;
+  }
+}
