@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'https://selise-space-shooter-backend.seliselocal.com/',
+  backendUrl: 'https://localhost:7238',
 };
 
 /*

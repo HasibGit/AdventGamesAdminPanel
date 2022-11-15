@@ -9,7 +9,7 @@ import { UserLoginData } from 'src/app/interfaces/user-login-data.interface';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  loginUser(userLoginData: UserLoginData) {
+  handleLogin(userLoginData: UserLoginData) {
     this.http
       .post(`${environment.backendUrl}/api/Command/Authenticate`, userLoginData)
       .subscribe((res) => {
