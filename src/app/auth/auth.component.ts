@@ -42,8 +42,7 @@ export class AuthComponent implements OnInit {
             return;
           }
 
-          AuthInterceptor.accessToken = resData.result.accessToken;
-          localStorage.setItem('AG_Access_Token', AuthInterceptor.accessToken);
+          localStorage.setItem('ag_token', resData.result.accessToken);
           this.isLoading = false;
           this.router.navigate(['/']);
         },

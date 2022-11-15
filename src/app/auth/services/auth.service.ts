@@ -26,6 +26,10 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('AG_Access_Token') != null;
+    return localStorage.getItem('ag_token') != null;
+  }
+
+  getToken() {
+    return localStorage.getItem('ag_token') || '';
   }
 }

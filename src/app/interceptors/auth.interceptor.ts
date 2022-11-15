@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -8,11 +8,11 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  static accessToken: string = '';
-  constructor(private router: Router) {}
+  constructor(private router: Router, private inject: Injector) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -22,12 +22,11 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-    if (localStorage.getItem('AG_Acces_Token') != null) {
-      AuthInterceptor.accessToken = localStorage.getItem('AG_Access_Token');
-    }
+    let authService = this.inject.get(AuthService);
+
     const req = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${AuthInterceptor.accessToken}`,
+        Authorization: `Bearer ${authService.getToken()}`,
       },
     });
     return next.handle(req).pipe(
