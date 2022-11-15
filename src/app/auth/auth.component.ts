@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-auth',
@@ -19,7 +20,7 @@ export class AuthComponent implements OnInit {
     this.form = this.formBuilder.group({
       userName: ['', Validators.required],
       password: ['', Validators.required],
-      companyId: ['', Validators.required],
+      companyId: environment.companyId,
     });
   }
 

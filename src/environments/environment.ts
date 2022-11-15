@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   backendUrl: 'https://localhost:7238',
+  companyId: 'spiga',
 };
 
 /*
