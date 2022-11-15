@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { NgxLoadingModule } from 'ngx-loading';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     MatInputModule,
     MatButtonModule,
     NgxLoadingModule.forRoot({}),
+    MatMenuModule,
+    MatIconModule,
   ],
   providers: [
     {

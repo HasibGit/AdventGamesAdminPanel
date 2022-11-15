@@ -32,4 +32,9 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('ag_token') || '';
   }
+
+  logoutUser() {
+    localStorage.removeItem('ag_token');
+    this.router.navigate(['/auth']);
+  }
 }

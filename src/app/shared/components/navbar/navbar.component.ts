@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserInfo } from 'src/app/interfaces/userInfo.interface';
 
 @Component({
@@ -8,7 +9,11 @@ import { UserInfo } from 'src/app/interfaces/userInfo.interface';
 })
 export class NavbarComponent implements OnInit {
   @Input('userInfo') userInfo: UserInfo;
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
+
+  logout() {
+    this.authService.logoutUser();
+  }
 }
