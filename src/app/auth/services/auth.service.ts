@@ -24,4 +24,8 @@ export class AuthService {
       }
     );
   }
+
+  isLoggedIn() {
+    return localStorage.getItem('AG_Access_Token') != null;
+  }
 }
