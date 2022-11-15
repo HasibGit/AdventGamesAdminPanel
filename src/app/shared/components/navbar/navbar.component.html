@@ -1,6 +1,6 @@
 <mat-card>
   <div fxLayout="row" fxLayoutAlign="end center" *ngIf="userInfo">
-    <p class="user-name">{{userInfo.result.fullName}}</p>
+    <p class="user-name">{{fullName}}</p>
     <div class="admin-chip"><span>Admin</span></div>
 
     <button mat-icon-button [matMenuTriggerFor]="menu">

@@ -24,11 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     let authService = this.inject.get(AuthService);
 
-    const req = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${authService.getToken()}`,
-      },
-    });
+    const req = this.addTokenHeader(request, authService.getToken());
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status == 401) {
@@ -37,5 +33,11 @@ export class AuthInterceptor implements HttpInterceptor {
         return throwError(() => err);
       })
     );
+  }
+
+  addTokenHeader(request: HttpRequest<any>, token: any) {
+    return request.clone({
+      headers: request.headers.set('Authorization', `Bearer ${token}`),
+    });
   }
 }

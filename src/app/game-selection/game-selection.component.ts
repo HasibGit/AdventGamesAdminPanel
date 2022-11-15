@@ -8,16 +8,7 @@ import { UserInfo } from '../interfaces/userInfo.interface';
   styleUrls: ['./game-selection.component.scss'],
 })
 export class GameSelectionComponent implements OnInit {
-  userInfo: UserInfo;
+  constructor() {}
 
-  constructor(private appService: AppService) {}
-
-  ngOnInit(): void {
-    this.appService
-      .getUser()
-      .pipe(take(1))
-      .subscribe((res: UserInfo) => {
-        this.userInfo = res;
-      });
-  }
+  ngOnInit(): void {}
 }
