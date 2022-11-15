@@ -9,7 +9,7 @@
           <mat-label>Username</mat-label>
           <input matInput placeholder="Enter Username" formControlName="userName">
         </mat-form-field>
-        <mat-form-field appearance="outline" style="margin-bottom: 24px">
+        <mat-form-field appearance="outline" [ngClass]="{'mb-24': errorMessage.length <= 0}">
           <mat-label>Password</mat-label>
           <input matInput type="password" placeholder="Enter Password" formControlName="password">
         </mat-form-field>

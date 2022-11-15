@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { UserLoginData } from 'src/app/interfaces/user-login-data.interface';
 import { Router } from '@angular/router';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
+import { UserInfo } from 'src/app/interfaces/userInfo.interface';
 
 @Injectable({
   providedIn: 'root',
