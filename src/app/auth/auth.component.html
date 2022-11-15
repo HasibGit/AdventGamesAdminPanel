@@ -1,8 +1,10 @@
+<ngx-loading [show]="isLoading"
+  [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.3)'}"></ngx-loading>
 <div class="container" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="login-card mat-elevation-z4" fxLayout="column" fxLayoutAlign="start center">
     <h2 class="title" style="margin-top: 90.5px; margin-bottom: 70px">Admin Login</h2>
     <div style="width: 60%">
-      <form [formGroup]="form" (submit)="login()" fxLayout="column" class="w-100-p">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column" class="w-100-p">
         <mat-form-field appearance="outline">
           <mat-label>Username</mat-label>
           <input matInput placeholder="Enter Username" formControlName="userName">

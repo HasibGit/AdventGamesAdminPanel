@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthComponent implements OnInit {
   form!: FormGroup;
+  isLoading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,8 +25,18 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  login() {
+  onSubmit() {
     // console.log(this.form.getRawValue());
-    this.authService.handleLogin(this.form.getRawValue());
+    this.isLoading = true;
+    this.authService.login(this.form.getRawValue()).subscribe(
+      (resData) => {
+        console.log(resData);
+        this.isLoading = false;
+      },
+      (errorMessage) => {
+        console.log(errorMessage);
+        this.isLoading = false;
+      }
+    );
   }
 }
