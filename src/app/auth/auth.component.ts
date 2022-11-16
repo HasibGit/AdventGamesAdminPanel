@@ -47,15 +47,18 @@ export class AuthComponent implements OnInit {
             this.isLoading = false;
             return;
           }
-          localStorage.setItem('ag_token', resData.result.accessToken);
+          this.tokenStorageService.saveToken(resData.result.accessToken);
+          this.tokenStorageService.saveRefreshToken(
+            resData.result.refreshToken
+          );
           this.appService
             .getUser()
             .pipe(take(1))
             .subscribe((user: UserInfo) => {
               this.tokenStorageService.saveUser(user);
+              this.isLoading = false;
+              this.router.navigate(['/']);
             });
-          this.isLoading = false;
-          this.router.navigate(['/']);
         },
         (errorMessage) => {
           console.log(errorMessage);

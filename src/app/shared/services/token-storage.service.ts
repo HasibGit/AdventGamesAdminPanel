@@ -11,8 +11,16 @@ export class TokenStorageService {
     localStorage.setItem('ag_token', token);
   }
 
+  saveRefreshToken(refreshToken: string) {
+    localStorage.setItem('ag_refresh_token', refreshToken);
+  }
+
   getToken() {
     return localStorage.getItem('ag_token') || '';
+  }
+
+  getRefreshToken() {
+    return localStorage.getItem('ag_refresh_token') || '';
   }
 
   saveUser(user: UserInfo) {
