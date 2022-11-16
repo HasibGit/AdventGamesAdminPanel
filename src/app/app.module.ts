@@ -18,6 +18,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { GameCardComponent } from './game-selection/game-card/game-card.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
     GameAnalyticsComponent,
     AuthComponent,
     NavbarComponent,
+    GameCardComponent,
   ],
   imports: [
     BrowserModule,
