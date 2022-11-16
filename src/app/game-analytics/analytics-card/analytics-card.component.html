@@ -1,0 +1,7 @@
+<div class="analytics-card" *ngIf="analyticsCardInfo" fxLayout="row" fxLayoutAlign="center center"
+  (click)="onSelectAnalytics()">
+  <div fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="24px">
+    <img class="analytics-logo" src="{{analyticsCardInfo.logoPath}}" alt="">
+    <h3 class="analytics-title">{{analyticsTitle}}</h3>
+  </div>
+</div>

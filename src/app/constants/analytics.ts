@@ -1,6 +1,6 @@
 import { GameAnalytics } from '../interfaces/game-analytics.interface';
 
-export const gameAnalytics: GameAnalytics[] = [
+export const GAME_ANALYTICS: GameAnalytics[] = [
   {
     logoPath: '../../assets/images/player-base-logo.svg',
     analyticsTitle: 'Player Base',

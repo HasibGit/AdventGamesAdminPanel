@@ -2,11 +2,11 @@
 <div class="container" fxLayout="column" fxLayoutAlign=" center center" fxLayoutGap="40px">
   <h2 class="game-selection-title">Select Game</h2>
 
-  <ng-container *ngIf="games">
-    <div *ngFor="let game of games" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px">
+  <div *ngIf="games" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px">
+    <div *ngFor="let game of games">
       <app-game-card [gameInfo]="game"></app-game-card>
     </div>
-  </ng-container>
+  </div>
 
 
 </div>
