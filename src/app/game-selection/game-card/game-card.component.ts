@@ -6,6 +6,7 @@ import {
   OnInit,
   Renderer2,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { GameCard } from 'src/app/interfaces/game-card.interface';
 
 @Component({
@@ -16,7 +17,11 @@ import { GameCard } from 'src/app/interfaces/game-card.interface';
 export class GameCardComponent implements OnInit, AfterViewInit {
   @Input('gameInfo') game: GameCard;
   gameTitle: string;
-  constructor(private elementRef: ElementRef, private render: Renderer2) {}
+  constructor(
+    private elementRef: ElementRef,
+    private render: Renderer2,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.gameTitle = this.game.gameTitle;
@@ -33,5 +38,9 @@ export class GameCardComponent implements OnInit, AfterViewInit {
       'backgroundColor',
       this.game.cardBackgroundColor
     );
+  }
+
+  onSelectGame() {
+    this.router.navigate(['/analytics']);
   }
 }
