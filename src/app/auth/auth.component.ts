@@ -56,6 +56,7 @@ export class AuthComponent implements OnInit {
             .pipe(take(1))
             .subscribe((user: UserInfo) => {
               this.tokenStorageService.saveUser(user);
+              this.authService.getNewToken(); // keep getting access token from refresh token after logging in
               this.isLoading = false;
               this.router.navigate(['/']);
             });
