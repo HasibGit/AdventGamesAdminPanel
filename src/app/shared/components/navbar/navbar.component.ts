@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserInfo } from 'src/app/interfaces/userInfo.interface';
 import { TokenStorageService } from '../../services/token-storage.service';
@@ -8,7 +14,9 @@ import { TokenStorageService } from '../../services/token-storage.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
+export class NavbarComponent
+  implements OnInit, AfterViewInit, AfterContentInit
+{
   userInfo: UserInfo;
   fullName: string;
   constructor(
@@ -20,7 +28,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.userInfo = this.tokenStorageService.getUser();
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit(): void {}
+
+  ngAfterContentInit(): void {
     this.fullName = this.userInfo.result.fullName;
   }
 

@@ -41,7 +41,6 @@ export class AuthComponent implements OnInit {
       this.isLoading = true;
       this.authService.login(this.form.getRawValue()).subscribe(
         (resData: any) => {
-          console.log(resData);
           if (resData.externalError && resData.externalError.length > 0) {
             this.errorMessage = resData.externalError;
             this.isLoading = false;
