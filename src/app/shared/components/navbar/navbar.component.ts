@@ -8,6 +8,7 @@ import {
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserInfo } from 'src/app/interfaces/userInfo.interface';
 import { TokenStorageService } from '../../services/token-storage.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +22,8 @@ export class NavbarComponent
   fullName: string;
   constructor(
     private authService: AuthService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -36,5 +38,9 @@ export class NavbarComponent
 
   logout() {
     this.authService.logoutUser();
+  }
+
+  onBackButtonClick() {
+    this.location.back();
   }
 }

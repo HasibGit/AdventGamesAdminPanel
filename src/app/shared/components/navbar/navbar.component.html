@@ -1,7 +1,14 @@
 <mat-card>
   <div fxLayout="row" fxLayoutAlign="space-between center">
-    <app-ng-dynamic-breadcrumb [bgColor]="'#fff'" [fontSize]="'14px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'"
-      [symbol]="' > '"></app-ng-dynamic-breadcrumb>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <button mat-icon-button (click)="onBackButtonClick()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <app-ng-dynamic-breadcrumb [bgColor]="'#fff'" [fontSize]="'14px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'"
+        [symbol]="' > '"></app-ng-dynamic-breadcrumb>
+    </div>
+
     <div fxLayout="row" fxLayoutAlign="end center" *ngIf="userInfo">
       <img class="avatar" src="../../../../assets/images/avatar.svg" alt="" srcset="">
       <p class="user-name">{{fullName}}</p>
