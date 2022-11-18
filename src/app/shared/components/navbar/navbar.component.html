@@ -1,14 +1,16 @@
 <mat-card>
-  <div fxLayout="row" fxLayoutAlign="end center" *ngIf="userInfo">
-    <p class="user-name">{{fullName}}</p>
-    <div class="admin-chip"><span>Admin</span></div>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="end center" *ngIf="userInfo">
+      <p class="user-name">{{fullName}}</p>
+      <div class="admin-chip"><span>Admin</span></div>
 
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>arrow_drop_down</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="logout()">Logout</button>
-    </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
 
+    </div>
   </div>
 </mat-card>

@@ -8,8 +8,6 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameCard } from 'src/app/interfaces/game-card.interface';
-import { BreadCrumbLink } from 'src/app/interfaces/breadcrumb.interface';
-import { BreadcrumbService } from 'src/app/shared/services/breadcrumb.service';
 
 @Component({
   selector: 'app-game-card',
@@ -22,8 +20,7 @@ export class GameCardComponent implements OnInit, AfterViewInit {
   constructor(
     private elementRef: ElementRef,
     private render: Renderer2,
-    private router: Router,
-    private breadcrumbService: BreadcrumbService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,24 +41,6 @@ export class GameCardComponent implements OnInit, AfterViewInit {
   }
 
   onSelectGame() {
-    let breadCrumb: BreadCrumbLink[] = [
-      {
-        name: 'Games',
-        isLink: true,
-        routePath: '/',
-      },
-      {
-        name: this.gameTitle,
-        isLink: false,
-      },
-      {
-        name: 'Select Analytics',
-        isLink: false,
-      },
-    ];
-
-    this.breadcrumbService.breadcrumb.next(breadCrumb);
-
     this.router.navigate(['/analytics']);
   }
 }
