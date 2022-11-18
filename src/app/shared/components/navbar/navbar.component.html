@@ -1,5 +1,7 @@
 <mat-card>
   <div fxLayout="row" fxLayoutAlign="space-between center">
+    <app-ng-dynamic-breadcrumb [bgColor]="'#fff'" [fontSize]="'14px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'"
+      [symbol]="' > '"></app-ng-dynamic-breadcrumb>
     <div fxLayout="row" fxLayoutAlign="end center" *ngIf="userInfo">
       <p class="user-name">{{fullName}}</p>
       <div class="admin-chip"><span>Admin</span></div>

@@ -10,6 +10,15 @@ const routes: Routes = [
     path: '',
     component: GameSelectionComponent,
     canActivate: [AuthGuard],
+    data: {
+      title: 'Select Game',
+      breadcrumb: [
+        {
+          label: 'Games',
+          url: '',
+        },
+      ],
+    },
   },
   {
     path: 'auth',
@@ -19,6 +28,19 @@ const routes: Routes = [
     path: 'analytics',
     component: GameAnalyticsComponent,
     canActivate: [AuthGuard],
+    data: {
+      title: 'Select Analytics',
+      breadcrumb: [
+        {
+          label: 'Games',
+          url: '/',
+        },
+        {
+          label: 'Select Analytics',
+          url: '/analytics',
+        },
+      ],
+    },
   },
 ];
 

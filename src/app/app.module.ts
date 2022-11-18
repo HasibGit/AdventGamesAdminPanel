@@ -20,6 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { GameCardComponent } from './game-selection/game-card/game-card.component';
 import { AnalyticsCardComponent } from './game-analytics/analytics-card/analytics-card.component';
+import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AnalyticsCardComponent } from './game-analytics/analytics-card/analytic
     NgxLoadingModule.forRoot({}),
     MatMenuModule,
     MatIconModule,
+    NgDynamicBreadcrumbModule,
   ],
   providers: [
     {
