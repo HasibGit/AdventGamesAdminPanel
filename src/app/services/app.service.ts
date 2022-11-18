@@ -14,4 +14,17 @@ export class AppService {
       `${environment.backendUrl}/api/Query/GetUserProfile`
     );
   }
+
+  getPlayerBase(gameId: string, pageIndex = 0, pageSize = 10) {
+    return this.http.get(
+      `${environment.backendUrl}/api/Query/GetGameProfiles`,
+      {
+        params: {
+          pageIndex: pageIndex,
+          pageSize: pageSize,
+          gameId: gameId,
+        },
+      }
+    );
+  }
 }
