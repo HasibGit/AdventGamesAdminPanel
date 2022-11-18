@@ -3,10 +3,14 @@ import {
   AfterViewInit,
   Component,
   Input,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { BreadCrumbLink } from 'src/app/interfaces/breadcrumb.interface';
 import { UserInfo } from 'src/app/interfaces/userInfo.interface';
+import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
@@ -15,17 +19,25 @@ import { TokenStorageService } from '../../services/token-storage.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent
-  implements OnInit, AfterViewInit, AfterContentInit
+  implements OnInit, AfterViewInit, AfterContentInit, OnDestroy
 {
   userInfo: UserInfo;
   fullName: string;
+  breadcrumbSubscription: Subscription;
   constructor(
     private authService: AuthService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
+    private breadcrumbService: BreadcrumbService
   ) {}
 
   ngOnInit(): void {
     this.userInfo = this.tokenStorageService.getUser();
+    this.breadcrumbSubscription = this.breadcrumbService.breadcrumb.subscribe(
+      (response: BreadCrumbLink[]) => {
+        console.log('FROM NAVBAR COMPONENT');
+        console.log(response);
+      }
+    );
   }
 
   ngAfterViewInit(): void {}
@@ -36,5 +48,9 @@ export class NavbarComponent
 
   logout() {
     this.authService.logoutUser();
+  }
+
+  ngOnDestroy(): void {
+    this.breadcrumbSubscription.unsubscribe();
   }
 }
