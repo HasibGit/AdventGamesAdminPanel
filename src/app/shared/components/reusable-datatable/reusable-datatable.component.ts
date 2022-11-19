@@ -49,6 +49,9 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
     if (isNaN(dateWrapper.getDate())) {
       return data;
     } else {
+      if (!isNaN(data)) {
+        return data;
+      }
       return this.datepipe.transform(data, 'mediumDate');
     }
   }

@@ -56,7 +56,6 @@ export class PlayerBaseComponent implements OnInit {
       .pipe(take(1))
       .subscribe((players: Player) => {
         this.players = players;
-        console.log(this.players);
 
         if (this.players.isSuccess) {
           this.players.result.records.forEach((player: PlayerInfo) => {
