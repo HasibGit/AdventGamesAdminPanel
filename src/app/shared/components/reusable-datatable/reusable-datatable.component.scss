@@ -1,0 +1,23 @@
+:host ::ng-deep {
+  mat-header-row {
+    background-color: #e1e5ea;
+  }
+
+  mat-header-cell {
+    border: 1px solid #c9ccd5;
+    padding-left: 24px;
+    font-weight: 600;
+  }
+
+  mat-row:hover {
+    background-color: #f7f7f7;
+    cursor: pointer;
+  }
+
+  mat-row :first-child {
+    padding-left: 24px;
+  }
+  mat-row :last-child {
+    padding-right: 0;
+  }
+}

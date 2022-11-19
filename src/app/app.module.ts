@@ -18,10 +18,15 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { GameCardComponent } from './game-selection/game-card/game-card.component';
 import { AnalyticsCardComponent } from './game-analytics/analytics-card/analytics-card.component';
 import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 import { PlayerBaseComponent } from './game-analytics/player-base/player-base.component';
+import { ReusableDatatableComponent } from './shared/components/reusable-datatable/reusable-datatable.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -33,6 +38,7 @@ import { PlayerBaseComponent } from './game-analytics/player-base/player-base.co
     GameCardComponent,
     AnalyticsCardComponent,
     PlayerBaseComponent,
+    ReusableDatatableComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +50,9 @@ import { PlayerBaseComponent } from './game-analytics/player-base/player-base.co
     MatCardModule,
     MatInputModule,
     MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     NgxLoadingModule.forRoot({}),
     MatMenuModule,
     MatIconModule,
@@ -55,6 +64,7 @@ import { PlayerBaseComponent } from './game-analytics/player-base/player-base.co
       useClass: AuthInterceptor,
       multi: true,
     },
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })
