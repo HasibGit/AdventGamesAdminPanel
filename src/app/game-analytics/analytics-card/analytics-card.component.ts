@@ -6,6 +6,8 @@ import {
   OnInit,
   Renderer2,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 import { GameAnalytics } from '../../interfaces/game-analytics.interface';
 
 @Component({
@@ -16,7 +18,12 @@ import { GameAnalytics } from '../../interfaces/game-analytics.interface';
 export class AnalyticsCardComponent implements OnInit, AfterViewInit {
   @Input('analyticsCardInfo') analyticsCardInfo: GameAnalytics;
   analyticsTitle: string;
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
+  constructor(
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    private router: Router,
+    private tokenStorageService: TokenStorageService
+  ) {}
 
   ngOnInit(): void {
     this.analyticsTitle = this.analyticsCardInfo.analyticsTitle;
@@ -37,6 +44,10 @@ export class AnalyticsCardComponent implements OnInit, AfterViewInit {
   }
 
   onSelectAnalytics() {
-    console.log('go to analytics');
+    let selectedGame: { gameId: string; gameTitle: string } =
+      this.tokenStorageService.getSelectedGame();
+    if (this.analyticsTitle == 'Player Base') {
+      this.router.navigate([`/analytics/${selectedGame.gameTitle}/players`]);
+    }
   }
 }

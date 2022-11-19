@@ -15,6 +15,10 @@ export class TokenStorageService {
     localStorage.setItem('ag_refresh_token', refreshToken);
   }
 
+  saveSelectedGame(game: { gameId: string; gameTitle: string }) {
+    localStorage.setItem('ag_selected_game', JSON.stringify(game));
+  }
+
   getToken() {
     return localStorage.getItem('ag_token') || '';
   }
@@ -31,6 +35,15 @@ export class TokenStorageService {
     const user = localStorage.getItem('ag_user');
     if (user) {
       return JSON.parse(user);
+    }
+
+    return {};
+  }
+
+  getSelectedGame() {
+    const game = localStorage.getItem('ag_selected_game');
+    if (game) {
+      return JSON.parse(game);
     }
 
     return {};

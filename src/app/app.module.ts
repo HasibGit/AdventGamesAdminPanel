@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { GameCardComponent } from './game-selection/game-card/game-card.component';
 import { AnalyticsCardComponent } from './game-analytics/analytics-card/analytics-card.component';
 import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
+import { PlayerBaseComponent } from './game-analytics/player-base/player-base.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
     NavbarComponent,
     GameCardComponent,
     AnalyticsCardComponent,
+    PlayerBaseComponent,
   ],
   imports: [
     BrowserModule,

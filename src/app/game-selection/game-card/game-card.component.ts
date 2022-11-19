@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameCard } from 'src/app/interfaces/game-card.interface';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 
 @Component({
   selector: 'app-game-card',
@@ -20,7 +21,8 @@ export class GameCardComponent implements OnInit, AfterViewInit {
   constructor(
     private elementRef: ElementRef,
     private render: Renderer2,
-    private router: Router
+    private router: Router,
+    private tokenStorageService: TokenStorageService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,11 @@ export class GameCardComponent implements OnInit, AfterViewInit {
   }
 
   onSelectGame() {
+    let selectedGame = {
+      gameId: this.game.gameId,
+      gameTitle: this.game.gameTitle,
+    };
+    this.tokenStorageService.saveSelectedGame(selectedGame);
     this.router.navigate([`/analytics/${this.gameTitle}`]);
   }
 }

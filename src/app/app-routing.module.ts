@@ -4,6 +4,7 @@ import { GameSelectionComponent } from './game-selection/game-selection.componen
 import { GameAnalyticsComponent } from './game-analytics/game-analytics.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './shared/auth.guard';
+import { PlayerBaseComponent } from './game-analytics/player-base/player-base.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,28 @@ const routes: Routes = [
         {
           label: 'Select Analytics',
           url: '/analytics/:gameTitle',
+        },
+      ],
+    },
+  },
+  {
+    path: 'analytics/:gameTitle/players',
+    component: PlayerBaseComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'PlayerBase',
+      breadcrumb: [
+        {
+          label: 'Games',
+          url: '/',
+        },
+        {
+          label: '{{gameTitle}}',
+          url: '/analytics/:gameTitle',
+        },
+        {
+          label: 'Players',
+          url: 'analytics/:gameTitle/players',
         },
       ],
     },
