@@ -25,7 +25,7 @@ const routes: Routes = [
     component: AuthComponent,
   },
   {
-    path: 'analytics',
+    path: 'analytics/:gameTitle',
     component: GameAnalyticsComponent,
     canActivate: [AuthGuard],
     data: {
@@ -36,8 +36,12 @@ const routes: Routes = [
           url: '/',
         },
         {
+          label: '{{gameTitle}}',
+          url: '/analytics/:gameTitle',
+        },
+        {
           label: 'Select Analytics',
-          url: '/analytics',
+          url: '/analytics/:gameTitle',
         },
       ],
     },

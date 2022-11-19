@@ -41,6 +41,6 @@ export class GameCardComponent implements OnInit, AfterViewInit {
   }
 
   onSelectGame() {
-    this.router.navigate(['/analytics']);
+    this.router.navigate([`/analytics/${this.gameTitle}`]);
   }
 }
