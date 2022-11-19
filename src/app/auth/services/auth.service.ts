@@ -33,7 +33,11 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('ag_token') != null;
+    return (
+      localStorage.getItem('ag_token') &&
+      localStorage.getItem('ag_refresh_token') &&
+      localStorage.getItem('ag_user')
+    );
   }
 
   getToken() {
