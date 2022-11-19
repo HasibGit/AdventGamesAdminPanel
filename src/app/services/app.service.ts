@@ -15,6 +15,13 @@ export class AppService {
     );
   }
 
+  isGameSelected() {
+    if (localStorage.getItem('ag_selected_game')) {
+      return true;
+    }
+    return false;
+  }
+
   getPlayerBase(gameId: string, pageIndex = 0, pageSize = 10) {
     return this.http.get(
       `${environment.backendUrl}/api/Query/GetGameProfiles`,

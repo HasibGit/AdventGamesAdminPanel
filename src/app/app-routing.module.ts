@@ -5,6 +5,7 @@ import { GameAnalyticsComponent } from './game-analytics/game-analytics.componen
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './shared/auth.guard';
 import { PlayerBaseComponent } from './game-analytics/player-base/player-base.component';
+import { AnalyticsGuard } from './shared/analytics.guard';
 
 const routes: Routes = [
   {
@@ -50,7 +51,7 @@ const routes: Routes = [
   {
     path: 'analytics/:gameTitle/players',
     component: PlayerBaseComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AnalyticsGuard],
     data: {
       title: 'PlayerBase',
       breadcrumb: [
