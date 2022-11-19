@@ -16,7 +16,7 @@ export class AppService {
   }
 
   isGameSelected() {
-    if (localStorage.getItem('ag_selected_game')) {
+    if (sessionStorage.getItem('ag_selected_game')) {
       return true;
     }
     return false;

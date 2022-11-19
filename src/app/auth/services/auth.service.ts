@@ -34,14 +34,14 @@ export class AuthService {
 
   isLoggedIn() {
     return (
-      localStorage.getItem('ag_token') &&
-      localStorage.getItem('ag_refresh_token') &&
-      localStorage.getItem('ag_user')
+      sessionStorage.getItem('ag_token') &&
+      sessionStorage.getItem('ag_refresh_token') &&
+      sessionStorage.getItem('ag_user')
     );
   }
 
   getToken() {
-    return localStorage.getItem('ag_token') || '';
+    return sessionStorage.getItem('ag_token') || '';
   }
 
   getNewToken() {
@@ -73,9 +73,10 @@ export class AuthService {
   }
 
   logoutUser() {
-    localStorage.removeItem('ag_token');
-    localStorage.removeItem('ag_refresh_token');
-    localStorage.removeItem('ag_user');
+    sessionStorage.removeItem('ag_token');
+    sessionStorage.removeItem('ag_refresh_token');
+    sessionStorage.removeItem('ag_user');
+    sessionStorage.removeItem('ag_selected_game');
     this.refreshTokenSubscription.unsubscribe();
     this.router.navigate(['/auth']);
   }

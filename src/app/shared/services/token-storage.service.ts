@@ -8,31 +8,31 @@ export class TokenStorageService {
   constructor() {}
 
   saveToken(token: string) {
-    localStorage.setItem('ag_token', token);
+    sessionStorage.setItem('ag_token', token);
   }
 
   saveRefreshToken(refreshToken: string) {
-    localStorage.setItem('ag_refresh_token', refreshToken);
+    sessionStorage.setItem('ag_refresh_token', refreshToken);
   }
 
   saveSelectedGame(game: { gameId: string; gameTitle: string }) {
-    localStorage.setItem('ag_selected_game', JSON.stringify(game));
+    sessionStorage.setItem('ag_selected_game', JSON.stringify(game));
   }
 
   getToken() {
-    return localStorage.getItem('ag_token') || '';
+    return sessionStorage.getItem('ag_token') || '';
   }
 
   getRefreshToken() {
-    return localStorage.getItem('ag_refresh_token') || '';
+    return sessionStorage.getItem('ag_refresh_token') || '';
   }
 
   saveUser(user: UserInfo) {
-    localStorage.setItem('ag_user', JSON.stringify(user));
+    sessionStorage.setItem('ag_user', JSON.stringify(user));
   }
 
   getUser() {
-    const user = localStorage.getItem('ag_user');
+    const user = sessionStorage.getItem('ag_user');
     if (user) {
       return JSON.parse(user);
     }
@@ -41,7 +41,7 @@ export class TokenStorageService {
   }
 
   getSelectedGame() {
-    const game = localStorage.getItem('ag_selected_game');
+    const game = sessionStorage.getItem('ag_selected_game');
     if (game) {
       return JSON.parse(game);
     }
