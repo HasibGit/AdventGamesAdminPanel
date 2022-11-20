@@ -1,7 +1,11 @@
 <app-navbar></app-navbar>
 
-<div class="container" fxLayout="row" fxLayoutAlign="center start">
+<div class="container">
   <ngx-loading [show]="isFetching"
     [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.3)'}"></ngx-loading>
-  <app-reusable-datatable [tableConfig]="tableConfig" *ngIf="!isFetching" fxFlex="90"></app-reusable-datatable>
+  <h2 class="player-base-header" *ngIf="!isFetching">Players</h2>
+  <div fxLayout="row" fxLayoutAlign="center start">
+    <app-reusable-datatable [tableConfig]="tableConfig" *ngIf="!isFetching" fxFlex="96"></app-reusable-datatable>
+  </div>
+
 </div>
