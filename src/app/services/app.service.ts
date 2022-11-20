@@ -35,4 +35,8 @@ export class AppService {
       }
     );
   }
+
+  timeDiffBetweenTwoDates(t1: Date, t2: Date) {
+    return t1.getTime() - t2.getTime();
+  }
 }

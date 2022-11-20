@@ -3,6 +3,9 @@ import { take } from 'rxjs';
 import { Player, PlayerInfo } from 'src/app/interfaces/player.interface';
 import { AppService } from 'src/app/services/app.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+TimeAgo.addDefaultLocale(en);
 
 @Component({
   selector: 'app-player-base',
@@ -12,6 +15,7 @@ import { TokenStorageService } from 'src/app/shared/services/token-storage.servi
 export class PlayerBaseComponent implements OnInit {
   players: Player;
   isFetching: boolean = false;
+  timeAgo: TimeAgo;
   data: {
     userName: string;
     userEmail: string;
@@ -58,6 +62,7 @@ export class PlayerBaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.isFetching = true;
+    this.timeAgo = new TimeAgo('en-US');
     let selectedGame = this.tokenStorageService.getSelectedGame();
     this.getPlayers(selectedGame.gameId);
   }
@@ -71,6 +76,13 @@ export class PlayerBaseComponent implements OnInit {
 
         if (this.players.isSuccess) {
           this.players.result.records.forEach((player: PlayerInfo) => {
+            let modifiedOn: Date = new Date(
+              player.modifiedOn != null ? player.modifiedOn : player.createdOn
+            );
+
+            let lastModifiedInMilliseconds =
+              this.appService.timeDiffBetweenTwoDates(new Date(), modifiedOn);
+
             let element: {
               userName: string;
               userEmail: string;
@@ -84,10 +96,9 @@ export class PlayerBaseComponent implements OnInit {
               lastGameScore: player.lastGameScore,
               personalBestScore: player.personalBestScore,
               signupDate: player.createdOn,
-              lastPlayed:
-                player.modifiedOn != null
-                  ? player.modifiedOn
-                  : player.createdOn,
+              lastPlayed: this.timeAgo.format(
+                Date.now() - lastModifiedInMilliseconds
+              ),
             };
 
             this.data.push(element);
