@@ -45,14 +45,14 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
   }
 
   check(data) {
+    if (typeof data == 'number') {
+      return data;
+    }
+
     var dateWrapper = new Date(data);
     if (isNaN(dateWrapper.getDate())) {
       return data;
-    } else {
-      if (!isNaN(data)) {
-        return data;
-      }
-      return this.datepipe.transform(data, 'mediumDate');
     }
+    return this.datepipe.transform(data, 'mediumDate');
   }
 }

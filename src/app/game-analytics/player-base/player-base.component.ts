@@ -17,6 +17,8 @@ export class PlayerBaseComponent implements OnInit {
     userEmail: string;
     lastGameScore: number;
     personalBestScore: number;
+    signupDate: string;
+    lastPlayed: string;
   }[] = [];
 
   displayedColumns: string[] = [
@@ -24,6 +26,8 @@ export class PlayerBaseComponent implements OnInit {
     'userEmail',
     'lastGameScore',
     'personalBestScore',
+    'signupDate',
+    'lastPlayed',
   ];
 
   columnHeaders: string[] = [
@@ -31,9 +35,17 @@ export class PlayerBaseComponent implements OnInit {
     'Email',
     'Last Game Score',
     'Personal Best Score',
+    'Signup Date',
+    'Last Played',
   ];
 
-  sortableColumns = ['userName', 'lastGameScore', 'personalBestScore'];
+  sortableColumns = [
+    'userName',
+    'lastGameScore',
+    'personalBestScore',
+    'signupDate',
+    'lastPlayed',
+  ];
   pageSizeOptions = [10];
   initialPageSize = 10;
 
@@ -64,11 +76,18 @@ export class PlayerBaseComponent implements OnInit {
               userEmail: string;
               lastGameScore: number;
               personalBestScore: number;
+              signupDate: string;
+              lastPlayed: string;
             } = {
               userName: player.user.userName,
               userEmail: player.user.userEmail,
               lastGameScore: player.lastGameScore,
               personalBestScore: player.personalBestScore,
+              signupDate: player.createdOn,
+              lastPlayed:
+                player.modifiedOn != null
+                  ? player.modifiedOn
+                  : player.createdOn,
             };
 
             this.data.push(element);
