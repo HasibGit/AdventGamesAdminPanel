@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserInfo } from '../interfaces/userInfo.interface';
+import { API_ENDPOINTS } from '../constants/api-endpoints';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class AppService {
 
   getUser() {
     return this.http.get<UserInfo>(
-      `${environment.backendUrl}/api/Query/GetUserProfile`
+      `${environment.backendUrl}${API_ENDPOINTS.GET_USER_PROFILE}`
     );
   }
 
@@ -24,7 +25,7 @@ export class AppService {
 
   getPlayerBase(gameId: string, pageIndex = 0, pageSize = 10) {
     return this.http.get(
-      `${environment.backendUrl}/api/Query/GetGameProfiles`,
+      `${environment.backendUrl}${API_ENDPOINTS.GET_GAME_PROFILES}`,
       {
         params: {
           pageIndex: pageIndex,

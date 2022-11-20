@@ -5,7 +5,7 @@ import { UserLoginData } from 'src/app/interfaces/user-login-data.interface';
 import { Router } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
-import { take } from 'rxjs/operators';
+import { API_ENDPOINTS } from 'src/app/constants/api-endpoints';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class AuthService {
 
   login(userLoginData: UserLoginData) {
     return this.http.post(
-      `${environment.backendUrl}/api/Command/Authenticate`,
+      `${environment.backendUrl}${API_ENDPOINTS.AUTHENTICATE}`,
       userLoginData,
       {
         headers: {
@@ -56,12 +56,16 @@ export class AuthService {
       }
 
       this.http
-        .post(`${environment.backendUrl}/api/Command/ValidateToken`, payload, {
-          headers: {
-            Accept: 'application/json',
-            skip: 'true',
-          },
-        })
+        .post(
+          `${environment.backendUrl}${API_ENDPOINTS.VALIDATE_TOKEN}`,
+          payload,
+          {
+            headers: {
+              Accept: 'application/json',
+              skip: 'true',
+            },
+          }
+        )
         .subscribe((res: any) => {
           if (res.externalError && res.externalError.length > 0) {
             this.logoutUser();
