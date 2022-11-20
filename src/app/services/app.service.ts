@@ -3,11 +3,15 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserInfo } from '../interfaces/userInfo.interface';
 import { API_ENDPOINTS } from '../constants/api-endpoints';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
+  paginatorChange: Subject<{ pageIndex: number; pageSize: number }> =
+    new Subject();
+
   constructor(private http: HttpClient) {}
 
   getUser() {
@@ -23,7 +27,7 @@ export class AppService {
     return false;
   }
 
-  getPlayerBase(gameId: string, pageIndex = 0, pageSize = 10) {
+  getPlayerBase(gameId: string, pageIndex: number, pageSize: number) {
     return this.http.get(
       `${environment.backendUrl}${API_ENDPOINTS.GET_GAME_PROFILES}`,
       {

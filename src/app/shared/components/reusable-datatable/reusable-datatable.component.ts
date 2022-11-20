@@ -10,6 +10,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { DatePipe } from '@angular/common';
 import { TableConfig } from 'src/app/interfaces/table-config.interface';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-reusable-datatable',
@@ -25,12 +26,13 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
   columnHeaders: string[];
   sortableColumns: string[];
   pageSizeOptions: number[];
-  initialPageSize: number;
+  pageSize: number;
+  pageIndex: number;
 
   @ViewChild('userTbSort') userTbSort = new MatSort();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private datepipe: DatePipe) {}
+  constructor(private datepipe: DatePipe, private appService: AppService) {}
 
   ngOnInit(): void {
     this.totalCount = this.config.totalCount;
@@ -39,7 +41,8 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
     this.columnHeaders = this.config.columnHeaders;
     this.sortableColumns = this.config.sortableColumns;
     this.pageSizeOptions = this.config.pageSizeOptions;
-    this.initialPageSize = this.config.initialPageSize;
+    this.pageIndex = this.config.pageIndex;
+    this.pageSize = this.config.pageSize;
   }
 
   ngAfterViewInit(): void {
@@ -59,9 +62,11 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
   }
 
   pageChanged(event: PageEvent) {
-    console.log({ event });
-    // this.pageSize = event.pageSize;
-    // this.currentPage = event.pageIndex;
-    // this.loadData();
+    console.log(event);
+
+    this.appService.paginatorChange.next({
+      pageIndex: event.pageIndex,
+      pageSize: event.pageSize,
+    });
   }
 }

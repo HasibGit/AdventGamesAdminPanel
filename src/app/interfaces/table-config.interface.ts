@@ -5,5 +5,6 @@ export class TableConfig {
   columnHeaders?: string[];
   sortableColumns?: string[];
   pageSizeOptions?: number[];
-  initialPageSize?: number;
+  pageIndex?: number;
+  pageSize?: number;
 }

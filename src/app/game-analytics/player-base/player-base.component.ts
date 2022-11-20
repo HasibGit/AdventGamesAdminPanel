@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription, take } from 'rxjs';
 import { Player, PlayerInfo } from 'src/app/interfaces/player.interface';
 import { AppService } from 'src/app/services/app.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
@@ -13,11 +13,12 @@ TimeAgo.addDefaultLocale(en);
   templateUrl: './player-base.component.html',
   styleUrls: ['./player-base.component.scss'],
 })
-export class PlayerBaseComponent implements OnInit {
+export class PlayerBaseComponent implements OnInit, OnDestroy {
   players: Player;
   isFetching: boolean = false;
   tableConfig: TableConfig = {};
   timeAgo: TimeAgo;
+  paginatorChangeSubscription: Subscription;
 
   data: {
     userName: string;
@@ -53,8 +54,7 @@ export class PlayerBaseComponent implements OnInit {
     'signupDate',
     'lastPlayed',
   ];
-  pageSizeOptions = [10];
-  initialPageSize = 10;
+  pageSizeOptions = [5, 10, 25, 50];
 
   constructor(
     private appService: AppService,
@@ -62,15 +62,34 @@ export class PlayerBaseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.paginationChangeSubscribe();
     this.isFetching = true;
     this.timeAgo = new TimeAgo('en-US');
     let selectedGame = this.tokenStorageService.getSelectedGame();
-    this.getPlayers(selectedGame.gameId);
+    this.getPlayers(selectedGame.gameId, 0, 10);
   }
 
-  getPlayers(gameId: string) {
+  paginationChangeSubscribe() {
+    this.paginatorChangeSubscription =
+      this.appService.paginatorChange.subscribe(
+        (pageState: { pageIndex: number; pageSize: number }) => {
+          if (pageState) {
+            this.isFetching = true;
+            let selectedGame = this.tokenStorageService.getSelectedGame();
+            this.getPlayers(
+              selectedGame.gameId,
+              pageState.pageIndex,
+              pageState.pageSize
+            );
+          }
+        }
+      );
+  }
+
+  getPlayers(gameId: string, pageIndex: number, pageSize: number) {
+    this.data = [];
     this.appService
-      .getPlayerBase(gameId)
+      .getPlayerBase(gameId, pageIndex, pageSize)
       .pipe(take(1))
       .subscribe((players: Player) => {
         this.players = players;
@@ -111,10 +130,15 @@ export class PlayerBaseComponent implements OnInit {
           this.tableConfig.columnHeaders = this.columnHeaders;
           this.tableConfig.sortableColumns = this.sortableColumns;
           this.tableConfig.pageSizeOptions = this.pageSizeOptions;
-          this.tableConfig.initialPageSize = this.initialPageSize;
+          this.tableConfig.pageIndex = pageIndex;
+          this.tableConfig.pageSize = pageSize;
         }
 
         this.isFetching = false;
       });
+  }
+
+  ngOnDestroy(): void {
+    this.paginatorChangeSubscription.unsubscribe();
   }
 }

@@ -22,7 +22,7 @@
 
   </mat-table>
 
-  <mat-paginator [length]="totalCount" [pageSizeOptions]="pageSizeOptions" [pageSize]="initialPageSize"
+  <mat-paginator [length]="totalCount" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [pageIndex]="pageIndex"
     (page)="pageChanged($event)"></mat-paginator>
 
 </div>
