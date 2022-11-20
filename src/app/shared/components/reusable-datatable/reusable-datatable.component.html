@@ -22,6 +22,7 @@
 
   </mat-table>
 
-  <mat-paginator [pageSizeOptions]="pageSizeOptions" pageSize={{initialPageSize}} showFirstLastButtons></mat-paginator>
+  <mat-paginator [length]="totalCount" [pageSizeOptions]="pageSizeOptions" [pageSize]="initialPageSize"
+    (page)="pageChanged($event)"></mat-paginator>
 
 </div>

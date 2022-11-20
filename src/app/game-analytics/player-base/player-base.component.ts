@@ -3,6 +3,7 @@ import { take } from 'rxjs';
 import { Player, PlayerInfo } from 'src/app/interfaces/player.interface';
 import { AppService } from 'src/app/services/app.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
+import { TableConfig } from 'src/app/interfaces/table-config.interface';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 TimeAgo.addDefaultLocale(en);
@@ -15,7 +16,9 @@ TimeAgo.addDefaultLocale(en);
 export class PlayerBaseComponent implements OnInit {
   players: Player;
   isFetching: boolean = false;
+  tableConfig: TableConfig = {};
   timeAgo: TimeAgo;
+
   data: {
     userName: string;
     userEmail: string;
@@ -52,8 +55,6 @@ export class PlayerBaseComponent implements OnInit {
   ];
   pageSizeOptions = [10];
   initialPageSize = 10;
-
-  tableConfig = [];
 
   constructor(
     private appService: AppService,
@@ -104,14 +105,13 @@ export class PlayerBaseComponent implements OnInit {
             this.data.push(element);
           });
 
-          this.tableConfig = [
-            this.data,
-            this.displayedColumns,
-            this.columnHeaders,
-            this.sortableColumns,
-            this.pageSizeOptions,
-            this.initialPageSize,
-          ];
+          this.tableConfig.data = this.data;
+          this.tableConfig.totalCount = this.players.result.count;
+          this.tableConfig.displayedColumns = this.displayedColumns;
+          this.tableConfig.columnHeaders = this.columnHeaders;
+          this.tableConfig.sortableColumns = this.sortableColumns;
+          this.tableConfig.pageSizeOptions = this.pageSizeOptions;
+          this.tableConfig.initialPageSize = this.initialPageSize;
         }
 
         this.isFetching = false;

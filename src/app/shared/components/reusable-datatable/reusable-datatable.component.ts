@@ -7,8 +7,9 @@ import {
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { DatePipe } from '@angular/common';
+import { TableConfig } from 'src/app/interfaces/table-config.interface';
 
 @Component({
   selector: 'app-reusable-datatable',
@@ -16,8 +17,9 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./reusable-datatable.component.scss'],
 })
 export class ReusableDatatableComponent implements OnInit, AfterViewInit {
-  @Input('tableConfig') config;
+  @Input('tableConfig') config: TableConfig;
 
+  totalCount: number = 0;
   listData: MatTableDataSource<any>;
   displayedColumns: string[];
   columnHeaders: string[];
@@ -26,22 +28,22 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
   initialPageSize: number;
 
   @ViewChild('userTbSort') userTbSort = new MatSort();
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private datepipe: DatePipe) {}
 
   ngOnInit(): void {
-    this.listData = new MatTableDataSource(this.config[0]);
-    this.displayedColumns = this.config[1];
-    this.columnHeaders = this.config[2];
-    this.sortableColumns = this.config[3];
-    this.pageSizeOptions = this.config[4];
-    this.initialPageSize = this.config[5];
+    this.totalCount = this.config.totalCount;
+    this.listData = new MatTableDataSource(this.config.data);
+    this.displayedColumns = this.config.displayedColumns;
+    this.columnHeaders = this.config.columnHeaders;
+    this.sortableColumns = this.config.sortableColumns;
+    this.pageSizeOptions = this.config.pageSizeOptions;
+    this.initialPageSize = this.config.initialPageSize;
   }
 
   ngAfterViewInit(): void {
     this.listData.sort = this.userTbSort;
-    this.listData.paginator = this.paginator;
   }
 
   check(data) {
@@ -54,5 +56,12 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
       return data;
     }
     return this.datepipe.transform(data, 'mediumDate');
+  }
+
+  pageChanged(event: PageEvent) {
+    console.log({ event });
+    // this.pageSize = event.pageSize;
+    // this.currentPage = event.pageIndex;
+    // this.loadData();
   }
 }
