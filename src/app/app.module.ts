@@ -28,6 +28,8 @@ import { PlayerBaseComponent } from './game-analytics/player-base/player-base.co
 import { ReusableDatatableComponent } from './shared/components/reusable-datatable/reusable-datatable.component';
 import { DatePipe } from '@angular/common';
 import { WinnersComponent } from './game-analytics/winners/winners.component';
+import { GenerateWinnersModalComponent } from './game-analytics/winners/modals/generate-winners-modal/generate-winners-modal.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { WinnersComponent } from './game-analytics/winners/winners.component';
     PlayerBaseComponent,
     ReusableDatatableComponent,
     WinnersComponent,
+    GenerateWinnersModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,13 +61,19 @@ import { WinnersComponent } from './game-analytics/winners/winners.component';
     NgxLoadingModule.forRoot({}),
     MatMenuModule,
     MatIconModule,
+    MatDialogModule,
     NgDynamicBreadcrumbModule,
   ],
+  entryComponents: [GenerateWinnersModalComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
+    },
+    {
+      provide: MatDialogRef,
+      useValue: {},
     },
     DatePipe,
   ],
