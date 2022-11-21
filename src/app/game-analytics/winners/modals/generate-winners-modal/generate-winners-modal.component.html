@@ -7,4 +7,15 @@
   </div>
 
   <mat-divider></mat-divider>
+
+  <div class="modal-body">
+    <form [formGroup]="form">
+      <mat-radio-group formControlName="timeSpan" fxLayout="row" fxLayoutGap="14px">
+        <mat-radio-button value="ALLTIME">All Time</mat-radio-button>
+        <mat-radio-button value="DATE">Date</mat-radio-button>
+        <mat-radio-button value="DATERANGE">Date Range</mat-radio-button>
+      </mat-radio-group>
+    </form>
+  </div>
+
 </div>

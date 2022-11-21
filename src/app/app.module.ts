@@ -31,6 +31,7 @@ import { WinnersComponent } from './game-analytics/winners/winners.component';
 import { GenerateWinnersModalComponent } from './game-analytics/winners/modals/generate-winners-modal/generate-winners-modal.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatDialogModule,
     MatDividerModule,
+    MatRadioModule,
     NgDynamicBreadcrumbModule,
   ],
   entryComponents: [GenerateWinnersModalComponent],

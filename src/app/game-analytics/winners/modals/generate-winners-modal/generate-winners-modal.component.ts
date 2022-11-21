@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -7,9 +8,21 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./generate-winners-modal.component.scss'],
 })
 export class GenerateWinnersModalComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<GenerateWinnersModalComponent>) {}
+  form: FormGroup;
 
-  ngOnInit(): void {}
+  constructor(
+    public dialogRef: MatDialogRef<GenerateWinnersModalComponent>,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      timeSpan: ['ALLTIME'],
+      fromDate: [new Date().toISOString()],
+      toDate: [new Date().toISOString()],
+      limit: [10],
+    });
+  }
 
   closeModal() {
     this.dialogRef.close();
