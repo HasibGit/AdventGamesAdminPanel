@@ -19,3 +19,24 @@ p {
 .modal-body {
   margin-top: 24px;
 }
+
+.modal-footer {
+  margin-top: 10px;
+}
+
+:host ::ng-deep {
+  .cancel-btn {
+    box-shadow: none !important;
+  }
+  .cancel-btn {
+    color: #246c0e !important;
+  }
+
+  .generate-btn {
+    background-color: #589c2e !important;
+    border: 2px solid #c6e8b0 !important;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+  }
+}
