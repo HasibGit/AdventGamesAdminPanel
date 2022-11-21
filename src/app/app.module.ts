@@ -30,6 +30,7 @@ import { DatePipe } from '@angular/common';
 import { WinnersComponent } from './game-analytics/winners/winners.component';
 import { GenerateWinnersModalComponent } from './game-analytics/winners/modals/generate-winners-modal/generate-winners-modal.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     MatMenuModule,
     MatIconModule,
     MatDialogModule,
+    MatDividerModule,
     NgDynamicBreadcrumbModule,
   ],
   entryComponents: [GenerateWinnersModalComponent],
