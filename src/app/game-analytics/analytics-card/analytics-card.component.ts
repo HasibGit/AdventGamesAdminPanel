@@ -48,6 +48,8 @@ export class AnalyticsCardComponent implements OnInit, AfterViewInit {
       this.tokenStorageService.getSelectedGame();
     if (this.analyticsTitle == 'Player Base') {
       this.router.navigate([`/analytics/${selectedGame.gameTitle}/players`]);
+    } else if (this.analyticsTitle == 'Winners') {
+      this.router.navigate([`/analytics/${selectedGame.gameTitle}/winners`]);
     }
   }
 }

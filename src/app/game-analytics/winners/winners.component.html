@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <ngx-loading [show]="false" [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.3)'}">
+  </ngx-loading>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h2 class="winners-header" fxFlex="50">Winners</h2>
+    <button style="margin-right: 40px" mat-raised-button color="primary">Generate Winners</button>
+  </div>
+
+
+  <div fxLayout="row" fxLayoutAlign="center start">
+    <!-- <app-reusable-datatable [tableConfig]="tableConfig" *ngIf="!isFetching" fxFlex="96"></app-reusable-datatable> -->
+  </div>
+
+</div>

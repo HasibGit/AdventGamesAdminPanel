@@ -6,6 +6,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './shared/auth.guard';
 import { PlayerBaseComponent } from './game-analytics/player-base/player-base.component';
 import { AnalyticsGuard } from './shared/analytics.guard';
+import { WinnersComponent } from './game-analytics/winners/winners.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,28 @@ const routes: Routes = [
         {
           label: 'Players',
           url: 'analytics/:gameTitle/players',
+        },
+      ],
+    },
+  },
+  {
+    path: 'analytics/:gameTitle/winners',
+    component: WinnersComponent,
+    canActivate: [AnalyticsGuard],
+    data: {
+      title: 'Winners',
+      breadcrumb: [
+        {
+          label: 'Games',
+          url: '/',
+        },
+        {
+          label: '{{gameTitle}}',
+          url: '/analytics/:gameTitle',
+        },
+        {
+          label: 'Winners',
+          url: 'analytics/:gameTitle/winners',
         },
       ],
     },

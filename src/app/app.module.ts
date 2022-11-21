@@ -27,6 +27,7 @@ import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 import { PlayerBaseComponent } from './game-analytics/player-base/player-base.component';
 import { ReusableDatatableComponent } from './shared/components/reusable-datatable/reusable-datatable.component';
 import { DatePipe } from '@angular/common';
+import { WinnersComponent } from './game-analytics/winners/winners.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { DatePipe } from '@angular/common';
     AnalyticsCardComponent,
     PlayerBaseComponent,
     ReusableDatatableComponent,
+    WinnersComponent,
   ],
   imports: [
     BrowserModule,
