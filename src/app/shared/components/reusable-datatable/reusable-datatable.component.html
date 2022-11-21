@@ -6,7 +6,17 @@
     <ng-container *ngFor="let column of displayedColumns; index as i" matColumnDef={{column}}>
       <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="sortableColumns.includes(column) ? false : true">
         {{columnHeaders[i]}}</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ check(element[column]) }}</mat-cell>
+      <mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element[column] == true || element[column] == false">
+          <span class="subscribed" *ngIf="element[column] == true"><span
+              class="subscribed-text">Subscribed</span></span>
+          <span class="not-subscribed" *ngIf="element[column] == false"><span class="not-subscribed-text">Not
+              Subscribed</span></span>
+        </ng-container>
+        <ng-container *ngIf="!(element[column] == true || element[column] == false)">
+          {{ check(element[column]) }}
+        </ng-container>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="noData">

@@ -50,7 +50,10 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
   }
 
   check(data) {
-    if (typeof data == 'number') {
+    if (typeof data == 'number' || typeof data == 'boolean') {
+      if (typeof data == 'boolean') {
+        return `<span>Hello</span>`;
+      }
       return data;
     }
 
