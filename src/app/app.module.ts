@@ -32,6 +32,8 @@ import { GenerateWinnersModalComponent } from './game-analytics/winners/modals/g
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatDialogModule,
     MatDividerModule,
     MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgDynamicBreadcrumbModule,
   ],
   entryComponents: [GenerateWinnersModalComponent],
@@ -79,6 +83,7 @@ import { MatRadioModule } from '@angular/material/radio';
       provide: MatDialogRef,
       useValue: {},
     },
+    MatDatepickerModule,
     DatePipe,
   ],
   bootstrap: [AppComponent],

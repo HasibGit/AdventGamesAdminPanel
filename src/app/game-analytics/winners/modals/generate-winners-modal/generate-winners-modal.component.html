@@ -9,12 +9,20 @@
   <mat-divider></mat-divider>
 
   <div class="modal-body">
-    <form [formGroup]="form">
+    <form [formGroup]="form" fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="24px">
       <mat-radio-group formControlName="timeSpan" fxLayout="row" fxLayoutGap="14px">
         <mat-radio-button value="ALLTIME">All Time</mat-radio-button>
         <mat-radio-button value="DATE">Date</mat-radio-button>
         <mat-radio-button value="DATERANGE">Date Range</mat-radio-button>
       </mat-radio-group>
+
+      <mat-form-field appearance="outline" *ngIf="timeCriteria == 'date'">
+        <mat-label>Date</mat-label>
+        <input placeholder="Date" matInput [matDatepicker]="picker" formControlName="fromDate" [max]="maxDate" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
     </form>
   </div>
 
