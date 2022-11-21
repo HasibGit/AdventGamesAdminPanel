@@ -117,16 +117,16 @@ export class PlayerBaseComponent implements OnInit, OnDestroy {
 
             this.data.push(element);
           });
-
-          this.tableConfig.data = this.data;
-          this.tableConfig.totalCount = this.players.result.count;
-          this.tableConfig.displayedColumns = this.displayedColumns;
-          this.tableConfig.columnHeaders = this.columnHeaders;
-          this.tableConfig.sortableColumns = this.sortableColumns;
-          this.tableConfig.pageSizeOptions = this.pageSizeOptions;
-          this.tableConfig.pageIndex = pageIndex;
-          this.tableConfig.pageSize = pageSize;
         }
+
+        this.tableConfig.data = this.data;
+        this.tableConfig.totalCount = this.players.result.count;
+        this.tableConfig.displayedColumns = this.displayedColumns;
+        this.tableConfig.columnHeaders = this.columnHeaders;
+        this.tableConfig.sortableColumns = this.sortableColumns;
+        this.tableConfig.pageSizeOptions = this.pageSizeOptions;
+        this.tableConfig.pageIndex = pageIndex;
+        this.tableConfig.pageSize = pageSize;
 
         this.isFetching = false;
       });
