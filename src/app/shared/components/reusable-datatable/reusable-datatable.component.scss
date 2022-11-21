@@ -14,10 +14,43 @@
     cursor: pointer;
   }
 
-  mat-row :first-child {
-    padding-left: 24px;
-  }
+  // mat-row :first-child {
+  //   padding-left: 24px;
+  // }
   mat-row :last-child {
     padding-right: 0;
+  }
+}
+
+.subscribed {
+  height: 27px;
+  width: 81px;
+  border-radius: 100px;
+  background-color: #e5fbef;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .subscribed-text {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 400;
+    color: #00ae5b;
+  }
+}
+
+.not-subscribed {
+  height: 27px;
+  width: 100px;
+  border-radius: 100px;
+  background-color: #e7efff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .not-subscribed-text {
+    font-size: 11px;
+    font-weight: 400;
+    color: #2d8eff;
   }
 }
