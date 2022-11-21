@@ -27,14 +27,13 @@ export class AppService {
     return false;
   }
 
-  getPlayerBase(gameId: string, pageIndex: number, pageSize: number) {
+  getPlayerBase(pageIndex: number, pageSize: number) {
     return this.http.get(
-      `${environment.backendUrl}${API_ENDPOINTS.GET_GAME_PROFILES}`,
+      `${environment.backendUrl}${API_ENDPOINTS.GET_USER_PROFILES}`,
       {
         params: {
           pageIndex: pageIndex,
           pageSize: pageSize,
-          gameId: gameId,
         },
       }
     );
