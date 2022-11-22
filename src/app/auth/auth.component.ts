@@ -61,7 +61,7 @@ export class AuthComponent implements OnInit {
             });
         },
         (errorMessage) => {
-          console.log(errorMessage);
+          alert('Sorry, something went wrong!');
           this.isLoading = false;
         }
       );

@@ -82,57 +82,65 @@ export class PlayerBaseComponent implements OnInit, OnDestroy {
     this.appService
       .getPlayerBase(pageIndex, pageSize)
       .pipe(take(1))
-      .subscribe((players: UserProfiles) => {
-        this.players = players;
+      .subscribe(
+        (players: UserProfiles) => {
+          this.players = players;
 
-        if (this.players.isSuccess) {
-          this.players.result.records.forEach((player: UserDetails) => {
-            // let modifiedOn: Date = new Date(
-            //   player.modifiedOn != null ? player.modifiedOn : player.createdOn
-            // );
+          if (this.players.isSuccess) {
+            this.players.result.records.forEach((player: UserDetails) => {
+              // let modifiedOn: Date = new Date(
+              //   player.modifiedOn != null ? player.modifiedOn : player.createdOn
+              // );
 
-            // let lastModifiedInMilliseconds =
-            //   this.appService.timeDiffBetweenTwoDates(new Date(), modifiedOn);
+              // let lastModifiedInMilliseconds =
+              //   this.appService.timeDiffBetweenTwoDates(new Date(), modifiedOn);
 
-            let element: {
-              fullName: string;
-              email: string;
-              city: string;
-              signupDate: string;
-              subscription: boolean;
-            } = {
-              fullName: player.fullName,
-              email: player.email,
-              city: player.city,
-              signupDate: player.createdOn,
-              subscription:
-                player.metaData.SubscribedNewsletters == 'True' ? true : false,
-              // userName: player.user.userName,
-              // userEmail: player.user.userEmail,
-              // lastGameScore: player.lastGameScore,
-              // personalBestScore: player.personalBestScore,
-              // signupDate: player.createdOn,
-              // lastPlayed: this.timeAgo.format(
-              //   Date.now() - lastModifiedInMilliseconds
-              // ),
-            };
+              let element: {
+                fullName: string;
+                email: string;
+                city: string;
+                signupDate: string;
+                subscription: boolean;
+              } = {
+                fullName: player.fullName,
+                email: player.email,
+                city: player.city,
+                signupDate: player.createdOn,
+                subscription:
+                  player.metaData.SubscribedNewsletters == 'True'
+                    ? true
+                    : false,
+                // userName: player.user.userName,
+                // userEmail: player.user.userEmail,
+                // lastGameScore: player.lastGameScore,
+                // personalBestScore: player.personalBestScore,
+                // signupDate: player.createdOn,
+                // lastPlayed: this.timeAgo.format(
+                //   Date.now() - lastModifiedInMilliseconds
+                // ),
+              };
 
-            this.data.push(element);
-          });
+              this.data.push(element);
+            });
+          }
+
+          this.tableConfig.data = this.data;
+          this.tableConfig.totalCount = this.players.result.count;
+          this.tableConfig.displayedColumns = this.displayedColumns;
+          this.tableConfig.columnHeaders = this.columnHeaders;
+          this.tableConfig.sortableColumns = this.sortableColumns;
+          this.tableConfig.pageSizeOptions = this.pageSizeOptions;
+          this.tableConfig.pageIndex = pageIndex;
+          this.tableConfig.pageSize = pageSize;
+          this.tableConfig.bindPaginatorWithTableData = false;
+
+          this.isFetching = false;
+        },
+        (error) => {
+          alert('Sorry, something went wrong!');
+          this.isFetching = false;
         }
-
-        this.tableConfig.data = this.data;
-        this.tableConfig.totalCount = this.players.result.count;
-        this.tableConfig.displayedColumns = this.displayedColumns;
-        this.tableConfig.columnHeaders = this.columnHeaders;
-        this.tableConfig.sortableColumns = this.sortableColumns;
-        this.tableConfig.pageSizeOptions = this.pageSizeOptions;
-        this.tableConfig.pageIndex = pageIndex;
-        this.tableConfig.pageSize = pageSize;
-        this.tableConfig.bindPaginatorWithTableData = false;
-
-        this.isFetching = false;
-      });
+      );
   }
 
   ngOnDestroy(): void {
