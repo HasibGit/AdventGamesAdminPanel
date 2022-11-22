@@ -87,22 +87,28 @@ export class WinnersComponent implements OnInit {
       this.appService
         .getWinners(payload.payload)
         .pipe(take(1))
-        .subscribe((winners: Winners) => {
-          if (winners && winners.isSuccess) {
-            this.data = winners.result.records;
-            this.tableConfig.data = this.data;
-            this.tableConfig.totalCount = winners.result.count;
-            this.tableConfig.displayedColumns = this.displayedColumns;
-            this.tableConfig.columnHeaders = this.columnHeaders;
-            this.tableConfig.sortableColumns = this.sortableColumns;
-            this.tableConfig.pageSizeOptions = this.pageSizeOptions;
-            this.tableConfig.pageIndex = 0;
-            this.tableConfig.pageSize = 10;
-            this.tableConfig.bindPaginatorWithTableData = true;
+        .subscribe(
+          (winners: Winners) => {
+            if (winners && winners.isSuccess) {
+              this.data = winners.result.records;
+              this.tableConfig.data = this.data;
+              this.tableConfig.totalCount = winners.result.count;
+              this.tableConfig.displayedColumns = this.displayedColumns;
+              this.tableConfig.columnHeaders = this.columnHeaders;
+              this.tableConfig.sortableColumns = this.sortableColumns;
+              this.tableConfig.pageSizeOptions = this.pageSizeOptions;
+              this.tableConfig.pageIndex = 0;
+              this.tableConfig.pageSize = 10;
+              this.tableConfig.bindPaginatorWithTableData = true;
 
+              this.isFetching = false;
+            }
+          },
+          (error) => {
             this.isFetching = false;
+            alert('Sorry, something went wrong');
           }
-        });
+        );
     });
   }
 }
