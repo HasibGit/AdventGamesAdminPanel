@@ -6,6 +6,7 @@ import { AppService } from 'src/app/services/app.service';
 import { take } from 'rxjs';
 import { WinnerInfo, Winners } from 'src/app/interfaces/winners.interface';
 import { TableConfig } from 'src/app/interfaces/table-config.interface';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-winners',
@@ -29,11 +30,13 @@ export class WinnersComponent implements OnInit {
   columnHeaders: string[] = ['NAME', 'EMAIL', 'CITY', 'SCORE', 'PRIZE'];
   sortableColumns = ['fullName', 'city', 'score'];
   pageSizeOptions = [5, 10, 25, 50];
+  timeSpan: string = '';
 
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<GenerateWinnersModalComponent>,
-    private appService: AppService
+    private appService: AppService,
+    private datepipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +67,23 @@ export class WinnersComponent implements OnInit {
     this.dialogRef.afterClosed().subscribe((payload: any) => {
       this.isFetching = true;
       this.generatedWinners = true;
+
+      if (payload.payload.filter == 'ALLTIME') {
+        this.timeSpan = 'All Time';
+      } else {
+        if (payload.payload.filter == 'DATE') {
+          this.timeSpan = this.datepipe.transform(
+            payload.payload.fromDate,
+            'mediumDate'
+          );
+        } else if (payload.payload.filter == 'DATERANGE') {
+          this.timeSpan =
+            this.datepipe.transform(payload.payload.fromDate, 'mediumDate') +
+            ' - ' +
+            this.datepipe.transform(payload.payload.toDate, 'mediumDate');
+        }
+      }
+
       this.appService
         .getWinners(payload.payload)
         .pipe(take(1))
