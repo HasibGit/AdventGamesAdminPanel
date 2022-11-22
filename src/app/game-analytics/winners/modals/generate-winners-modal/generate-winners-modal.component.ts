@@ -2,6 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
+
+interface Payload {
+  gameId: string;
+  limit: number;
+  filter: string;
+  fromDate: string;
+  toDate: string;
+}
 
 @Component({
   selector: 'app-generate-winners-modal',
@@ -16,14 +25,15 @@ export class GenerateWinnersModalComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialogRef: MatDialogRef<GenerateWinnersModalComponent>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private tokenStorageService: TokenStorageService
   ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
       timeSpan: ['ALLTIME'],
-      fromDate: [''],
-      toDate: [''],
+      fromDate: [new Date(0)],
+      toDate: [new Date()],
       limit: [10],
     });
 
@@ -45,7 +55,34 @@ export class GenerateWinnersModalComponent implements OnInit, OnDestroy {
   }
 
   sendGenerateWinnersFilter() {
-    console.log(this.form.getRawValue());
+    console.log(this.preparePayload(this.form.getRawValue()));
+  }
+
+  preparePayload(data: {
+    fromDate: string;
+    limit: number;
+    toDate: string;
+    timeSpan: string;
+  }) {
+    const payload: Payload = {
+      gameId: this.tokenStorageService.getSelectedGame().gameId,
+      limit: data.limit,
+      filter: data.timeSpan,
+      fromDate: this.modifyDate(new Date(data.fromDate)),
+      toDate: this.modifyDate(new Date(data.toDate)),
+    };
+
+    return payload;
+  }
+
+  modifyDate(date: Date) {
+    let modifiedDate: string = '';
+
+    modifiedDate += date.getMonth() + 1 + '/';
+    modifiedDate += date.getDate() + '/';
+    modifiedDate += date.getFullYear();
+
+    return modifiedDate;
   }
 
   closeModal() {
