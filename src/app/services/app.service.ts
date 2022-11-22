@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { UserInfo } from '../interfaces/userInfo.interface';
 import { API_ENDPOINTS } from '../constants/api-endpoints';
 import { Subject } from 'rxjs';
+import { GenerateWinnersPayload } from '../interfaces/generate-winners-payload.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,23 @@ export class AppService {
           pageIndex: pageIndex,
           pageSize: pageSize,
         },
+      }
+    );
+  }
+
+  getWinners(payload: GenerateWinnersPayload) {
+    let queryParams = {
+      gameId: payload.gameId,
+      limit: payload.limit,
+      filter: payload.filter,
+      fromDate: payload.fromDate,
+      toDate: payload.toDate,
+    };
+
+    return this.http.get(
+      `${environment.backendUrl}${API_ENDPOINTS.GET_GAME_WINNERS}`,
+      {
+        params: queryParams,
       }
     );
   }

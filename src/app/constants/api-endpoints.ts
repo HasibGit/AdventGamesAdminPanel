@@ -4,4 +4,5 @@ export const API_ENDPOINTS = {
   GET_USER_PROFILE: '/api/Query/GetUserProfile',
   GET_GAME_PROFILES: '/api/Query/GetGameProfiles',
   GET_USER_PROFILES: '/api/Query/GetUserProfiles',
+  GET_GAME_WINNERS: '/api/Query/GetGameWinners',
 };

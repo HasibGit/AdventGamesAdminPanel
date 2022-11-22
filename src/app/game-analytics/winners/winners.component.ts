@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { GenerateWinnersModalComponent } from './modals/generate-winners-modal/generate-winners-modal.component';
 import { GenerateWinnersPayload } from 'src/app/interfaces/generate-winners-payload.interface';
+import { AppService } from 'src/app/services/app.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-winners',
@@ -11,7 +13,8 @@ import { GenerateWinnersPayload } from 'src/app/interfaces/generate-winners-payl
 export class WinnersComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<GenerateWinnersModalComponent>
+    public dialogRef: MatDialogRef<GenerateWinnersModalComponent>,
+    private appService: AppService
   ) {}
 
   ngOnInit(): void {}
@@ -23,11 +26,14 @@ export class WinnersComponent implements OnInit {
       width: '524px',
     });
 
-    this.dialogRef
-      .afterClosed()
-      .subscribe((payload: GenerateWinnersPayload) => {
-        console.log('From parent component');
-        console.log(payload);
-      });
+    this.dialogRef.afterClosed().subscribe((payload: any) => {
+      this.appService
+        .getWinners(payload.payload)
+        .pipe(take(1))
+        .subscribe((winners: any) => {
+          console.log('Winners');
+          console.log(winners);
+        });
+    });
   }
 }

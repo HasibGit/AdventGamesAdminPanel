@@ -2,15 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { GenerateWinnersPayload } from 'src/app/interfaces/generate-winners-payload.interface';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
-
-interface Payload {
-  gameId: string;
-  limit: number;
-  filter: string;
-  fromDate: string;
-  toDate: string;
-}
 
 @Component({
   selector: 'app-generate-winners-modal',
@@ -55,7 +48,7 @@ export class GenerateWinnersModalComponent implements OnInit, OnDestroy {
   }
 
   sendGenerateWinnersFilter() {
-    const generateWinnersPayload: Payload = this.preparePayload(
+    const generateWinnersPayload: GenerateWinnersPayload = this.preparePayload(
       this.form.getRawValue()
     );
 
@@ -68,7 +61,7 @@ export class GenerateWinnersModalComponent implements OnInit, OnDestroy {
     toDate: string;
     timeSpan: string;
   }) {
-    const payload: Payload = {
+    const payload: GenerateWinnersPayload = {
       gameId: this.tokenStorageService.getSelectedGame().gameId,
       limit: data.limit,
       filter: data.timeSpan,
