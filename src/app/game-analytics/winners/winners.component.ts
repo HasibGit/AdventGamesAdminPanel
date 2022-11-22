@@ -61,12 +61,27 @@ export class WinnersComponent implements OnInit {
     });
 
     this.dialogRef.afterClosed().subscribe((payload: any) => {
+      this.isFetching = true;
       this.appService
         .getWinners(payload.payload)
         .pipe(take(1))
         .subscribe((winners: Winners) => {
-          console.log('Winners');
-          console.log(winners);
+          if (winners && winners.isSuccess) {
+            this.data = winners.result.records;
+            this.tableConfig.data = this.data;
+            this.tableConfig.totalCount = winners.result.count;
+            this.tableConfig.displayedColumns = this.displayedColumns;
+            this.tableConfig.columnHeaders = this.columnHeaders;
+            this.tableConfig.sortableColumns = this.sortableColumns;
+            this.tableConfig.pageSizeOptions = this.pageSizeOptions;
+            this.tableConfig.pageIndex = 0;
+            this.tableConfig.pageSize = 10;
+            this.tableConfig.bindPaginatorWithTableData = true;
+
+            console.log(this.tableConfig);
+
+            this.isFetching = false;
+          }
         });
     });
   }
