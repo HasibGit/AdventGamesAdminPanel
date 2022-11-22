@@ -20,7 +20,9 @@ TimeAgo.addDefaultLocale(en);
 export class PlayerBaseComponent implements OnInit, OnDestroy {
   players: UserProfiles;
   isFetching: boolean = false;
-  tableConfig: TableConfig = {};
+  tableConfig: TableConfig = {
+    bindPaginatorWithTableData: false,
+  };
   timeAgo: TimeAgo;
   paginatorChangeSubscription: Subscription;
 
@@ -127,6 +129,7 @@ export class PlayerBaseComponent implements OnInit, OnDestroy {
         this.tableConfig.pageSizeOptions = this.pageSizeOptions;
         this.tableConfig.pageIndex = pageIndex;
         this.tableConfig.pageSize = pageSize;
+        this.tableConfig.bindPaginatorWithTableData = false;
 
         this.isFetching = false;
       });

@@ -47,13 +47,14 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.listData.sort = this.userTbSort;
+
+    if (this.config && this.config.bindPaginatorWithTableData) {
+      this.listData.paginator = this.paginator;
+    }
   }
 
   check(data) {
     if (typeof data == 'number' || typeof data == 'boolean') {
-      if (typeof data == 'boolean') {
-        return `<span>Hello</span>`;
-      }
       return data;
     }
 

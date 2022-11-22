@@ -4,6 +4,7 @@ import { GenerateWinnersModalComponent } from './modals/generate-winners-modal/g
 import { GenerateWinnersPayload } from 'src/app/interfaces/generate-winners-payload.interface';
 import { AppService } from 'src/app/services/app.service';
 import { take } from 'rxjs';
+import { Winners } from 'src/app/interfaces/winners.interface';
 
 @Component({
   selector: 'app-winners',
@@ -30,7 +31,7 @@ export class WinnersComponent implements OnInit {
       this.appService
         .getWinners(payload.payload)
         .pipe(take(1))
-        .subscribe((winners: any) => {
+        .subscribe((winners: Winners) => {
           console.log('Winners');
           console.log(winners);
         });

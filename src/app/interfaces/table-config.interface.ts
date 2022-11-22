@@ -7,4 +7,5 @@ export class TableConfig {
   pageSizeOptions?: number[];
   pageIndex?: number;
   pageSize?: number;
+  bindPaginatorWithTableData: boolean;
 }
