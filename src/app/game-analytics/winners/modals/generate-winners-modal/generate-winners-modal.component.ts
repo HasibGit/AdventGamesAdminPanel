@@ -38,9 +38,12 @@ export class GenerateWinnersModalComponent implements OnInit, OnDestroy {
           this.timeCriteria = 'alltime';
           break;
         case 'DATE':
+          this.form.controls['fromDate'].setValue(new Date());
           this.timeCriteria = 'date';
           break;
         case 'DATERANGE':
+          this.form.controls['fromDate'].setValue(new Date());
+          this.form.controls['toDate'].setValue(new Date());
           this.timeCriteria = 'daterange';
           break;
       }
@@ -48,6 +51,11 @@ export class GenerateWinnersModalComponent implements OnInit, OnDestroy {
   }
 
   sendGenerateWinnersFilter() {
+    if (this.timeCriteria == 'date') {
+      this.form.controls['toDate'].setValue(
+        this.form.controls['fromDate'].value
+      );
+    }
     const generateWinnersPayload: GenerateWinnersPayload = this.preparePayload(
       this.form.getRawValue()
     );
