@@ -66,11 +66,11 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
   }
 
   pageChanged(event: PageEvent) {
-    console.log(event);
-
-    this.appService.paginatorChange.next({
-      pageIndex: event.pageIndex,
-      pageSize: event.pageSize,
-    });
+    if (this.config && !this.config.bindPaginatorWithTableData) {
+      this.appService.paginatorChange.next({
+        pageIndex: event.pageIndex,
+        pageSize: event.pageSize,
+      });
+    }
   }
 }
