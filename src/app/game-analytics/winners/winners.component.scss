@@ -28,3 +28,19 @@
     font-weight: 400;
   }
 }
+
+.hint {
+  background-color: #fff;
+  width: 90%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  p {
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    color: #9ea1a3;
+  }
+}

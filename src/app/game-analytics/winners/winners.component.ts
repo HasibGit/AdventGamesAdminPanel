@@ -14,6 +14,7 @@ import { TableConfig } from 'src/app/interfaces/table-config.interface';
 })
 export class WinnersComponent implements OnInit {
   isFetching: boolean = false;
+  generatedWinners: boolean = false;
   tableConfig: TableConfig = {
     bindPaginatorWithTableData: false,
   };
@@ -62,6 +63,7 @@ export class WinnersComponent implements OnInit {
 
     this.dialogRef.afterClosed().subscribe((payload: any) => {
       this.isFetching = true;
+      this.generatedWinners = true;
       this.appService
         .getWinners(payload.payload)
         .pipe(take(1))
@@ -77,8 +79,6 @@ export class WinnersComponent implements OnInit {
             this.tableConfig.pageIndex = 0;
             this.tableConfig.pageSize = 10;
             this.tableConfig.bindPaginatorWithTableData = true;
-
-            console.log(this.tableConfig);
 
             this.isFetching = false;
           }

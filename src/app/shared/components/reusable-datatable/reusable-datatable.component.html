@@ -28,8 +28,7 @@
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    <mat-footer-row *matFooterRowDef="['noData']" [style.display]="config.data.lenth > 0 ? 'none' : 'block'">
-    </mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [style.display]="listData ? 'none' : 'block'"></mat-footer-row>
 
   </mat-table>
 

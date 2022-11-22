@@ -10,8 +10,12 @@
   </div>
 
 
-  <div fxLayout="row" fxLayoutAlign="center start">
+  <div fxLayout="row" fxLayoutAlign="center start" *ngIf="generatedWinners">
     <app-reusable-datatable [tableConfig]="tableConfig" *ngIf="!isFetching" fxFlex="96"></app-reusable-datatable>
   </div>
+
+  <mat-card class="hint" *ngIf="!generatedWinners">
+    <p>Please generate winners</p>
+  </mat-card>
 
 </div>
