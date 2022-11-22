@@ -55,7 +55,11 @@ export class GenerateWinnersModalComponent implements OnInit, OnDestroy {
   }
 
   sendGenerateWinnersFilter() {
-    console.log(this.preparePayload(this.form.getRawValue()));
+    const generateWinnersPayload: Payload = this.preparePayload(
+      this.form.getRawValue()
+    );
+
+    this.dialogRef.close({ payload: generateWinnersPayload });
   }
 
   preparePayload(data: {

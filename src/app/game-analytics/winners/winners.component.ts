@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { GenerateWinnersModalComponent } from './modals/generate-winners-modal/generate-winners-modal.component';
+import { GenerateWinnersPayload } from 'src/app/interfaces/generate-winners-payload.interface';
 
 @Component({
   selector: 'app-winners',
@@ -16,10 +17,17 @@ export class WinnersComponent implements OnInit {
   ngOnInit(): void {}
 
   openModal() {
-    this.dialog.open(GenerateWinnersModalComponent, {
+    this.dialogRef = this.dialog.open(GenerateWinnersModalComponent, {
       autoFocus: false,
       disableClose: false,
       width: '524px',
     });
+
+    this.dialogRef
+      .afterClosed()
+      .subscribe((payload: GenerateWinnersPayload) => {
+        console.log('From parent component');
+        console.log(payload);
+      });
   }
 }
