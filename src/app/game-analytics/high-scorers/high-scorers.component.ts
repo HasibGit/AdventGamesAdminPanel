@@ -21,7 +21,12 @@ export class HighScorersComponent implements OnInit {
   tableConfig: TableConfig = {
     bindPaginatorWithTableData: false,
   };
-  data: HighScorerInfo[] = [];
+  data: {
+    name: string;
+    email: string;
+    scoreDay: string;
+    score: number;
+  }[] = [];
   displayedColumns: string[] = ['name', 'email', 'scoreDay', 'score'];
   columnHeaders: string[] = ['NAME', 'EMAIL', 'DATE', 'SCORE'];
   sortableColumns = ['name', 'scoreDay', 'score'];
@@ -86,7 +91,23 @@ export class HighScorersComponent implements OnInit {
         .subscribe(
           (highScorers: HighScorers) => {
             if (highScorers && highScorers.isSuccess) {
-              this.data = highScorers.result.records;
+              highScorers.result.records.forEach(
+                (highScorer: HighScorerInfo) => {
+                  let element: {
+                    name: string;
+                    email: string;
+                    scoreDay: string;
+                    score: number;
+                  } = {
+                    name: highScorer.user.userName,
+                    email: highScorer.user.userEmail,
+                    scoreDay: highScorer.scoreDay,
+                    score: highScorer.score,
+                  };
+
+                  this.data.push(element);
+                }
+              );
               this.tableConfig.data = this.data;
               this.tableConfig.totalCount = highScorers.result.count;
               this.tableConfig.displayedColumns = this.displayedColumns;
