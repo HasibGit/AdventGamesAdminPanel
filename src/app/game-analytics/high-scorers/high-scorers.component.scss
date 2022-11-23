@@ -1,0 +1,46 @@
+.container {
+  height: 100%;
+  width: 100%;
+  background-color: #f5f5f8;
+}
+
+.winners-header {
+  padding: 24px 40px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #2d2d2d;
+}
+
+:host ::ng-deep {
+  .mat-flat-button.mat-primary,
+  .mat-raised-button.mat-primary,
+  .mat-fab.mat-primary,
+  .mat-mini-fab.mat-primary {
+    background-color: #589c2e !important;
+    border: 2px solid #c6e8b0 !important;
+  }
+
+  .mat-flat-button.mat-primary,
+  .mat-raised-button.mat-primary,
+  .mat-fab.mat-primary,
+  .mat-mini-fab.mat-primary {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+.hint {
+  background-color: #fff;
+  width: 90%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  p {
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    color: #9ea1a3;
+  }
+}
