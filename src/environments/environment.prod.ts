@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  backendUrl: 'https://selise-space-shooter-backend.seliselocal.com/',
+  backendUrl: 'https://selise-space-shooter-backend.seliselocal.com',
   companyId: 'spiga',
 };
