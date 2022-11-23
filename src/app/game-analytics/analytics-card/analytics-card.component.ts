@@ -50,6 +50,10 @@ export class AnalyticsCardComponent implements OnInit, AfterViewInit {
       this.router.navigate([`/analytics/${selectedGame.gameTitle}/players`]);
     } else if (this.analyticsTitle == 'Winners') {
       this.router.navigate([`/analytics/${selectedGame.gameTitle}/winners`]);
+    } else if (this.analyticsTitle == 'High Scorers') {
+      this.router.navigate([
+        `/analytics/${selectedGame.gameTitle}/high-scorers`,
+      ]);
     }
   }
 }

@@ -7,6 +7,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { PlayerBaseComponent } from './game-analytics/player-base/player-base.component';
 import { AnalyticsGuard } from './shared/analytics.guard';
 import { WinnersComponent } from './game-analytics/winners/winners.component';
+import { HighScorersComponent } from './game-analytics/high-scorers/high-scorers.component';
 
 const routes: Routes = [
   {
@@ -89,6 +90,28 @@ const routes: Routes = [
         {
           label: 'Winners',
           url: 'analytics/:gameTitle/winners',
+        },
+      ],
+    },
+  },
+  {
+    path: 'analytics/:gameTitle/high-scorers',
+    component: HighScorersComponent,
+    canActivate: [AnalyticsGuard],
+    data: {
+      title: 'High Scorers',
+      breadcrumb: [
+        {
+          label: 'Games',
+          url: '/',
+        },
+        {
+          label: '{{gameTitle}}',
+          url: '/analytics/:gameTitle',
+        },
+        {
+          label: 'High Scorers',
+          url: 'analytics/:gameTitle/high-scorers',
         },
       ],
     },

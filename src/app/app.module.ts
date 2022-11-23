@@ -34,6 +34,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { HighScorersComponent } from './game-analytics/high-scorers/high-scorers.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReusableDatatableComponent,
     WinnersComponent,
     GenerateWinnersModalComponent,
+    HighScorersComponent,
   ],
   imports: [
     BrowserModule,
