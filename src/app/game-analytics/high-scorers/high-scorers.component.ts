@@ -66,66 +66,68 @@ export class HighScorersComponent implements OnInit {
     });
 
     this.dialogRef.afterClosed().subscribe((payload: any) => {
-      this.isFetching = true;
-      this.generatedHighScorers = true;
+      if (payload && payload != undefined) {
+        this.isFetching = true;
+        this.generatedHighScorers = true;
 
-      if (payload.payload.filter == 'ALLTIME') {
-        this.timeSpan = 'All Time';
-      } else {
-        if (payload.payload.filter == 'DATE') {
-          this.timeSpan = this.datepipe.transform(
-            payload.payload.fromDate,
-            'mediumDate'
-          );
-        } else if (payload.payload.filter == 'DATERANGE') {
-          this.timeSpan =
-            this.datepipe.transform(payload.payload.fromDate, 'mediumDate') +
-            ' - ' +
-            this.datepipe.transform(payload.payload.toDate, 'mediumDate');
-        }
-      }
-
-      this.appService
-        .getHighScorers(payload.payload)
-        .pipe(take(1))
-        .subscribe(
-          (highScorers: HighScorers) => {
-            if (highScorers && highScorers.isSuccess) {
-              highScorers.result.records.forEach(
-                (highScorer: HighScorerInfo) => {
-                  let element: {
-                    name: string;
-                    email: string;
-                    scoreDay: string;
-                    score: number;
-                  } = {
-                    name: highScorer.user.userName,
-                    email: highScorer.user.userEmail,
-                    scoreDay: highScorer.scoreDay,
-                    score: highScorer.score,
-                  };
-
-                  this.data.push(element);
-                }
-              );
-              this.tableConfig.data = this.data;
-              this.tableConfig.totalCount = highScorers.result.count;
-              this.tableConfig.displayedColumns = this.displayedColumns;
-              this.tableConfig.columnHeaders = this.columnHeaders;
-              this.tableConfig.sortableColumns = this.sortableColumns;
-              this.tableConfig.pageSizeOptions = this.pageSizeOptions;
-              this.tableConfig.pageIndex = 0;
-              this.tableConfig.pageSize = 10;
-              this.tableConfig.bindPaginatorWithTableData = true;
-
-              this.isFetching = false;
-            }
-          },
-          (error) => {
-            this.isFetching = false;
-            alert('Sorry, something went wrong');
+        if (payload.payload.filter == 'ALLTIME') {
+          this.timeSpan = 'All Time';
+        } else {
+          if (payload.payload.filter == 'DATE') {
+            this.timeSpan = this.datepipe.transform(
+              payload.payload.fromDate,
+              'mediumDate'
+            );
+          } else if (payload.payload.filter == 'DATERANGE') {
+            this.timeSpan =
+              this.datepipe.transform(payload.payload.fromDate, 'mediumDate') +
+              ' - ' +
+              this.datepipe.transform(payload.payload.toDate, 'mediumDate');
           }
-        );
+        }
+
+        this.appService
+          .getHighScorers(payload.payload)
+          .pipe(take(1))
+          .subscribe(
+            (highScorers: HighScorers) => {
+              if (highScorers && highScorers.isSuccess) {
+                highScorers.result.records.forEach(
+                  (highScorer: HighScorerInfo) => {
+                    let element: {
+                      name: string;
+                      email: string;
+                      scoreDay: string;
+                      score: number;
+                    } = {
+                      name: highScorer.user.userName,
+                      email: highScorer.user.userEmail,
+                      scoreDay: highScorer.scoreDay,
+                      score: highScorer.score,
+                    };
+
+                    this.data.push(element);
+                  }
+                );
+                this.tableConfig.data = this.data;
+                this.tableConfig.totalCount = highScorers.result.count;
+                this.tableConfig.displayedColumns = this.displayedColumns;
+                this.tableConfig.columnHeaders = this.columnHeaders;
+                this.tableConfig.sortableColumns = this.sortableColumns;
+                this.tableConfig.pageSizeOptions = this.pageSizeOptions;
+                this.tableConfig.pageIndex = 0;
+                this.tableConfig.pageSize = 10;
+                this.tableConfig.bindPaginatorWithTableData = true;
+
+                this.isFetching = false;
+              }
+            },
+            (error) => {
+              this.isFetching = false;
+              alert('Sorry, something went wrong');
+            }
+          );
+      }
     });
   }
 }

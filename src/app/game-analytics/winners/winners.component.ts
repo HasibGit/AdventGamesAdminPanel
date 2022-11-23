@@ -65,50 +65,52 @@ export class WinnersComponent implements OnInit {
     });
 
     this.dialogRef.afterClosed().subscribe((payload: any) => {
-      this.isFetching = true;
-      this.generatedWinners = true;
+      if (payload && payload != undefined) {
+        this.isFetching = true;
+        this.generatedWinners = true;
 
-      if (payload.payload.filter == 'ALLTIME') {
-        this.timeSpan = 'All Time';
-      } else {
-        if (payload.payload.filter == 'DATE') {
-          this.timeSpan = this.datepipe.transform(
-            payload.payload.fromDate,
-            'mediumDate'
-          );
-        } else if (payload.payload.filter == 'DATERANGE') {
-          this.timeSpan =
-            this.datepipe.transform(payload.payload.fromDate, 'mediumDate') +
-            ' - ' +
-            this.datepipe.transform(payload.payload.toDate, 'mediumDate');
-        }
-      }
-
-      this.appService
-        .getWinners(payload.payload)
-        .pipe(take(1))
-        .subscribe(
-          (winners: Winners) => {
-            if (winners && winners.isSuccess) {
-              this.data = winners.result.records;
-              this.tableConfig.data = this.data;
-              this.tableConfig.totalCount = winners.result.count;
-              this.tableConfig.displayedColumns = this.displayedColumns;
-              this.tableConfig.columnHeaders = this.columnHeaders;
-              this.tableConfig.sortableColumns = this.sortableColumns;
-              this.tableConfig.pageSizeOptions = this.pageSizeOptions;
-              this.tableConfig.pageIndex = 0;
-              this.tableConfig.pageSize = 10;
-              this.tableConfig.bindPaginatorWithTableData = true;
-
-              this.isFetching = false;
-            }
-          },
-          (error) => {
-            this.isFetching = false;
-            alert('Sorry, something went wrong');
+        if (payload.payload.filter == 'ALLTIME') {
+          this.timeSpan = 'All Time';
+        } else {
+          if (payload.payload.filter == 'DATE') {
+            this.timeSpan = this.datepipe.transform(
+              payload.payload.fromDate,
+              'mediumDate'
+            );
+          } else if (payload.payload.filter == 'DATERANGE') {
+            this.timeSpan =
+              this.datepipe.transform(payload.payload.fromDate, 'mediumDate') +
+              ' - ' +
+              this.datepipe.transform(payload.payload.toDate, 'mediumDate');
           }
-        );
+        }
+
+        this.appService
+          .getWinners(payload.payload)
+          .pipe(take(1))
+          .subscribe(
+            (winners: Winners) => {
+              if (winners && winners.isSuccess) {
+                this.data = winners.result.records;
+                this.tableConfig.data = this.data;
+                this.tableConfig.totalCount = winners.result.count;
+                this.tableConfig.displayedColumns = this.displayedColumns;
+                this.tableConfig.columnHeaders = this.columnHeaders;
+                this.tableConfig.sortableColumns = this.sortableColumns;
+                this.tableConfig.pageSizeOptions = this.pageSizeOptions;
+                this.tableConfig.pageIndex = 0;
+                this.tableConfig.pageSize = 10;
+                this.tableConfig.bindPaginatorWithTableData = true;
+
+                this.isFetching = false;
+              }
+            },
+            (error) => {
+              this.isFetching = false;
+              alert('Sorry, something went wrong');
+            }
+          );
+      }
     });
   }
 }
