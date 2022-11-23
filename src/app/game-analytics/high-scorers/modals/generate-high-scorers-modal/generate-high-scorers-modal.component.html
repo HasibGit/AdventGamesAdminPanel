@@ -9,12 +9,17 @@
   <mat-divider></mat-divider>
 
   <div class="modal-body">
-    <form [formGroup]="form" fxLayout="column" fxLayoutAlign="center start">
+    <form [formGroup]="form" fxLayout="column" fxLayoutAlign="center center">
       <mat-radio-group formControlName="timeSpan" fxLayout="row" fxLayoutGap="14px" style="margin-bottom: 24px">
         <mat-radio-button value="ALLTIME">All Time</mat-radio-button>
         <mat-radio-button value="DATE">Date</mat-radio-button>
         <mat-radio-button value="DATERANGE">Date Range</mat-radio-button>
       </mat-radio-group>
+
+      <mat-form-field appearance="outline">
+        <mat-label>No of high scorers</mat-label>
+        <input matInput placeholder="No of winners" formControlName="limit" type="number">
+      </mat-form-field>
 
       <mat-form-field appearance="outline" *ngIf="timeCriteria == 'date'">
         <mat-label>Date</mat-label>
@@ -35,11 +40,6 @@
 
         <mat-error *ngIf="form.controls['fromDate'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
         <mat-error *ngIf="form.controls['toDate'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>No of high scorers</mat-label>
-        <input matInput placeholder="No of winners" formControlName="limit" type="number">
       </mat-form-field>
     </form>
   </div>
