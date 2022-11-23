@@ -5,6 +5,7 @@ import { UserInfo } from '../interfaces/userInfo.interface';
 import { API_ENDPOINTS } from '../constants/api-endpoints';
 import { Subject } from 'rxjs';
 import { GenerateWinnersPayload } from '../interfaces/generate-winners-payload.interface';
+import { GenerateHighScorersPayload } from '../interfaces/generate-high-scorers-payload.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +52,23 @@ export class AppService {
 
     return this.http.get(
       `${environment.backendUrl}${API_ENDPOINTS.GET_GAME_WINNERS}`,
+      {
+        params: queryParams,
+      }
+    );
+  }
+
+  getHighScorers(payload: GenerateHighScorersPayload) {
+    let queryParams = {
+      gameId: payload.gameId,
+      limit: payload.limit,
+      filter: payload.filter,
+      fromDate: payload.fromDate,
+      toDate: payload.toDate,
+    };
+
+    return this.http.get(
+      `${environment.backendUrl}${API_ENDPOINTS.GET_GAME_HIGHSCORERS}`,
       {
         params: queryParams,
       }
