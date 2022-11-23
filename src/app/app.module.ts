@@ -35,6 +35,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HighScorersComponent } from './game-analytics/high-scorers/high-scorers.component';
+import { GenerateHighScorersModalComponent } from './high-scorers/modals/generate-high-scorers-modal/generate-high-scorers-modal.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { HighScorersComponent } from './game-analytics/high-scorers/high-scorers
     WinnersComponent,
     GenerateWinnersModalComponent,
     HighScorersComponent,
+    GenerateHighScorersModalComponent,
   ],
   imports: [
     BrowserModule,
