@@ -37,6 +37,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { HighScorersComponent } from './game-analytics/high-scorers/high-scorers.component';
 import { GenerateHighScorersModalComponent } from './game-analytics/high-scorers/modals/generate-high-scorers-modal/generate-high-scorers-modal.component';
 import { HAvatarComponent } from './shared/components/h-avatar/h-avatar.component';
+import { NavbarAvatarComponent } from './shared/components/navbar-avatar/navbar-avatar.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { HAvatarComponent } from './shared/components/h-avatar/h-avatar.componen
     HighScorersComponent,
     GenerateHighScorersModalComponent,
     HAvatarComponent,
+    NavbarAvatarComponent,
   ],
   imports: [
     BrowserModule,
