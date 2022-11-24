@@ -14,7 +14,12 @@
               Subscribed</span></span>
         </ng-container>
         <ng-container *ngIf="!isBoolean(element[column])">
-          {{ check(element[column]) }}
+          <ng-container *ngIf="column == 'fullName'">
+            <app-h-avatar [name]="element[column]" class="mr-5"></app-h-avatar>
+            <span>{{ element[column] }}</span>
+          </ng-container>
+
+          <ng-container *ngIf="!(column == 'fullName')">{{ check(element[column]) }}</ng-container>
         </ng-container>
       </mat-cell>
     </ng-container>

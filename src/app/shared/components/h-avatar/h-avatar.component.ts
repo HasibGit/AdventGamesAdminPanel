@@ -64,6 +64,8 @@ export class HAvatarComponent implements OnInit, AfterViewInit {
     } else {
       this.tagName = 'N/A';
     }
+
+    this.tagName = this.tagName.toUpperCase();
   }
 
   getRGB(c) {

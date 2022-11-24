@@ -22,12 +22,12 @@ export class HighScorersComponent implements OnInit {
     bindPaginatorWithTableData: false,
   };
   data: {
-    name: string;
+    fullName: string;
     email: string;
     scoreDay: string;
     score: number;
   }[] = [];
-  displayedColumns: string[] = ['name', 'email', 'scoreDay', 'score'];
+  displayedColumns: string[] = ['fullName', 'email', 'scoreDay', 'score'];
   columnHeaders: string[] = ['NAME', 'EMAIL', 'DATE', 'SCORE'];
   sortableColumns = ['name', 'scoreDay', 'score'];
   pageSizeOptions = [5, 10, 25, 50];
@@ -95,12 +95,12 @@ export class HighScorersComponent implements OnInit {
                 highScorers.result.records.forEach(
                   (highScorer: HighScorerInfo) => {
                     let element: {
-                      name: string;
+                      fullName: string;
                       email: string;
                       scoreDay: string;
                       score: number;
                     } = {
-                      name: highScorer.user.userName,
+                      fullName: highScorer.user.userName,
                       email: highScorer.user.userEmail,
                       scoreDay: highScorer.scoreDay,
                       score: highScorer.score,
