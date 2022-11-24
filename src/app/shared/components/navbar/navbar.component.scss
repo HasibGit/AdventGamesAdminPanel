@@ -6,6 +6,13 @@ p {
   padding: 0 !important;
 }
 
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
 :host::ng-deep {
   .mat-card {
     padding: 15px !important;
