@@ -54,6 +54,10 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
   }
 
   check(data) {
+    if (!data || data == '') {
+      return 'N/A';
+    }
+
     if (typeof data == 'number' || typeof data == 'boolean') {
       return data;
     }
@@ -63,6 +67,10 @@ export class ReusableDatatableComponent implements OnInit, AfterViewInit {
       return data;
     }
     return this.datepipe.transform(data, 'mediumDate');
+  }
+
+  isBoolean(data: any) {
+    return typeof data == 'boolean';
   }
 
   pageChanged(event: PageEvent) {

@@ -7,13 +7,13 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="sortableColumns.includes(column) ? false : true">
         {{columnHeaders[i]}}</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element[column] == true || element[column] == false">
+        <ng-container *ngIf="isBoolean(element[column])">
           <span class="subscribed" *ngIf="element[column] == true"><span
               class="subscribed-text">Subscribed</span></span>
           <span class="not-subscribed" *ngIf="element[column] == false"><span class="not-subscribed-text">Not
               Subscribed</span></span>
         </ng-container>
-        <ng-container *ngIf="!(element[column] == true || element[column] == false)">
+        <ng-container *ngIf="!isBoolean(element[column])">
           {{ check(element[column]) }}
         </ng-container>
       </mat-cell>
