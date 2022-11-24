@@ -13,14 +13,14 @@ import {
   styleUrls: ['./h-avatar.component.scss'],
 })
 export class HAvatarComponent implements OnInit, AfterViewInit {
-  fullName: string = 'Hasib Ullah';
+  @Input('name') fullName: string;
   tagName: string = '';
   colorCode: string;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    this.colorCode = '#ffffff';
+    this.colorCode = this.getRandomColor();
   }
 
   ngAfterViewInit(): void {
@@ -29,8 +29,7 @@ export class HAvatarComponent implements OnInit, AfterViewInit {
     this.generateNameTag();
     let name = this.elementRef.nativeElement.querySelector('.user-name');
     name.innerHTML = this.tagName;
-    // this.renderer.setStyle(name, 'color', this.getContrastYIQ(this.colorCode))
-    console.log(this.getTextColor('#000000'));
+    this.renderer.setStyle(name, 'color', this.getTextColor(this.colorCode));
   }
 
   getRandomColor() {
