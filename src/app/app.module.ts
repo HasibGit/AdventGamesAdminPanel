@@ -36,6 +36,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HighScorersComponent } from './game-analytics/high-scorers/high-scorers.component';
 import { GenerateHighScorersModalComponent } from './game-analytics/high-scorers/modals/generate-high-scorers-modal/generate-high-scorers-modal.component';
+import { HAvatarComponent } from './shared/components/h-avatar/h-avatar.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { GenerateHighScorersModalComponent } from './game-analytics/high-scorers
     GenerateWinnersModalComponent,
     HighScorersComponent,
     GenerateHighScorersModalComponent,
+    HAvatarComponent,
   ],
   imports: [
     BrowserModule,
