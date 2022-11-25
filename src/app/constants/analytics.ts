@@ -2,12 +2,12 @@ import { GameAnalytics } from '../interfaces/game-analytics.interface';
 
 export const GAME_ANALYTICS: GameAnalytics[] = [
   {
-    logoPath: '../../assets/images/player-base-logo.svg',
+    logoPath: '../../assets/images/player-base-logo.png',
     analyticsTitle: 'Player Base',
     backgroundColor: '#FFECEC',
   },
   {
-    logoPath: '../../assets/images/winners-logo.svg',
+    logoPath: '../../assets/images/winners-logo.png',
     analyticsTitle: 'Winners',
     backgroundColor: '#EBF4FF',
   },
