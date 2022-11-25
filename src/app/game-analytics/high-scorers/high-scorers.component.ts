@@ -86,6 +86,7 @@ export class HighScorersComponent implements OnInit {
           }
         }
 
+        this.data = [];
         this.appService
           .getHighScorers(payload.payload)
           .pipe(take(1))
