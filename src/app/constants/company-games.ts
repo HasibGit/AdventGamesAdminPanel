@@ -7,4 +7,28 @@ export const GAMES: GameCard[] = [
     gameLogoPath: '../../assets/images/space-shooter.png',
     cardBackgroundColor: '#EBF4FF',
   },
+  {
+    gameId: 'candy-craze',
+    gameTitle: 'Candy Craze',
+    gameLogoPath: '../../assets/images/candy-craze.png',
+    cardBackgroundColor: '#FFF8E4',
+  },
+  {
+    gameId: 'memory-match',
+    gameTitle: 'Memory Match',
+    gameLogoPath: '../../assets/images/memory-match.png',
+    cardBackgroundColor: '#FFECEC',
+  },
+  {
+    gameId: 'sky-racer',
+    gameTitle: 'Sky Racer',
+    gameLogoPath: '../../assets/images/sky-racer.png',
+    cardBackgroundColor: '#DEF5E5',
+  },
+  {
+    gameId: 'hungry-worm',
+    gameTitle: 'Hungry Worm',
+    gameLogoPath: '../../assets/images/hungry-worm.png',
+    cardBackgroundColor: '#FFF0E5',
+  },
 ];
