@@ -34,7 +34,7 @@ export class NavbarAvatarComponent implements OnInit, AfterViewInit {
           this.tagName = 'N/A';
           break;
         case 1:
-          this.tagName = arr[0].length >= 2 ? arr[0].slice(0, 2) : arr[0];
+          this.tagName = arr[0].charAt(0);
           break;
         case 2:
           this.tagName = arr[0].charAt(0) + arr[1].charAt(0);
