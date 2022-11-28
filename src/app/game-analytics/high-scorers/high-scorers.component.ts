@@ -25,6 +25,7 @@ export class HighScorersComponent implements OnInit {
     fullName: string;
     userName: string;
     userEmail: string;
+    city: string;
     scoreDay: string;
     score: number;
   }[] = [];
@@ -32,6 +33,7 @@ export class HighScorersComponent implements OnInit {
     'fullName',
     'userName',
     'userEmail',
+    'city',
     'scoreDay',
     'score',
   ];
@@ -39,10 +41,11 @@ export class HighScorersComponent implements OnInit {
     'FULL NAME',
     'USER NAME',
     'EMAIL',
+    'CITY',
     'DATE',
     'SCORE',
   ];
-  sortableColumns = ['fullName', 'userName', 'scoreDay', 'score'];
+  sortableColumns = ['fullName', 'userName', 'city', 'scoreDay', 'score'];
   pageSizeOptions = [5, 10, 25, 50];
   timeSpan: string = '';
 
@@ -122,12 +125,14 @@ export class HighScorersComponent implements OnInit {
                       fullName: string;
                       userName: string;
                       userEmail: string;
+                      city: string;
                       scoreDay: string;
                       score: number;
                     } = {
                       fullName: highScorer.fullName,
                       userName: highScorer.userName,
                       userEmail: highScorer.userEmail,
+                      city: highScorer.city,
                       scoreDay: highScorer.scoreDay,
                       score: highScorer.score,
                     };
