@@ -17,6 +17,18 @@ p {
   .mat-card {
     padding: 15px !important;
   }
+
+  app-ng-dynamic-breadcrumb > ul > span > li > span {
+    padding: 0 3px !important;
+  }
+
+  app-ng-dynamic-breadcrumb > ul > span > li > span {
+    font-weight: bold !important;
+  }
+
+  app-ng-dynamic-breadcrumb > ul > span:last-child > li > a {
+    font-weight: bold !important;
+  }
 }
 
 .user-name {
