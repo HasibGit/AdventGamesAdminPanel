@@ -98,6 +98,16 @@ export class WinnersComponent implements OnInit {
           .pipe(take(1))
           .subscribe(
             (winners: Winners) => {
+              if (
+                winners &&
+                winners.errors &&
+                winners.errors.errors.length > 0
+              ) {
+                alert(winners.errors.errors[0]);
+                this.isFetching = false;
+                return;
+              }
+
               if (winners && winners.isSuccess) {
                 this.data = winners.result.records;
                 this.tableConfig.data = this.data;

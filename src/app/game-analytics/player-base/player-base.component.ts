@@ -87,6 +87,12 @@ export class PlayerBaseComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe(
         (players: UserProfiles) => {
+          if (players && players.errors && players.errors.errors.length > 0) {
+            alert(players.errors.errors[0]);
+            this.isFetching = false;
+            return;
+          }
+
           this.players = players;
 
           if (this.players.isSuccess) {

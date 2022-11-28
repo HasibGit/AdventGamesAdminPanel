@@ -105,6 +105,16 @@ export class HighScorersComponent implements OnInit {
           .pipe(take(1))
           .subscribe(
             (highScorers: HighScorers) => {
+              if (
+                highScorers &&
+                highScorers.errors &&
+                highScorers.errors.errors.length > 0
+              ) {
+                alert(highScorers.errors.errors[0]);
+                this.isFetching = false;
+                return;
+              }
+
               if (highScorers && highScorers.isSuccess) {
                 highScorers.result.records.forEach(
                   (highScorer: HighScorerInfo) => {

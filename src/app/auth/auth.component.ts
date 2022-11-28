@@ -53,12 +53,25 @@ export class AuthComponent implements OnInit {
           this.appService
             .getUser()
             .pipe(take(1))
-            .subscribe((user: UserInfo) => {
-              this.tokenStorageService.saveUser(user);
-              this.authService.getNewToken(); // keep getting access token from refresh token after logging in
-              this.isLoading = false;
-              this.router.navigate(['/']);
-            });
+            .subscribe(
+              (user: UserInfo) => {
+                if (!user.isSuccess && user.errors && user.errors.errors[0]) {
+                  alert(user.errors.errors[0]);
+                  this.isLoading = false;
+                  this.router.navigate(['/auth']);
+                  return;
+                }
+
+                this.tokenStorageService.saveUser(user);
+                this.authService.getNewToken(); // keep getting access token from refresh token after logging in
+                this.isLoading = false;
+                this.router.navigate(['/']);
+              },
+              (error) => {
+                alert('Sorry, something went wrong!');
+                this.isLoading = false;
+              }
+            );
         },
         (errorMessage) => {
           alert('Sorry, something went wrong!');
