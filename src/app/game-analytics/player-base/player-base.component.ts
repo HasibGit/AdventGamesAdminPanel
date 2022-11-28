@@ -28,6 +28,7 @@ export class PlayerBaseComponent implements OnInit, OnDestroy {
 
   data: {
     fullName: string;
+    userName: string;
     email: string;
     city: string;
     signupDate: string;
@@ -36,6 +37,7 @@ export class PlayerBaseComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = [
     'fullName',
+    'userName',
     'email',
     'city',
     'signupDate',
@@ -43,14 +45,15 @@ export class PlayerBaseComponent implements OnInit, OnDestroy {
   ];
 
   columnHeaders: string[] = [
-    'NAME',
+    'FULL NAME',
+    'USER NAME',
     'EMAIL',
     'CITY',
     'SIGNUP DATE',
     'SUBSCRIPTION',
   ];
 
-  sortableColumns = ['fullName', 'signupDate', 'subscription'];
+  sortableColumns = ['fullName', 'userName', 'signupDate', 'subscription'];
   pageSizeOptions = [5, 10, 25, 50];
 
   constructor(
@@ -97,12 +100,14 @@ export class PlayerBaseComponent implements OnInit, OnDestroy {
 
               let element: {
                 fullName: string;
+                userName: string;
                 email: string;
                 city: string;
                 signupDate: string;
                 subscription: boolean;
               } = {
                 fullName: player.fullName,
+                userName: player.userName,
                 email: player.email,
                 city: player.city,
                 signupDate: player.createdOn,
