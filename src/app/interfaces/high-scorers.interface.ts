@@ -1,16 +1,13 @@
 export interface HighScorerInfo {
-  user: {
-    userId: string;
-    userName: string;
-    userEmail: string;
-  };
-  score: number;
-  gameId: string;
+  city: string;
   companyId: string;
+  fullName: string;
+  gameId: string;
+  score: number;
   scoreDay: string;
-  id: string;
-  createdOn: string;
-  modifiedOn: string;
+  userEmail: string;
+  userId: string;
+  userName: string;
 }
 
 export interface HighScorers {

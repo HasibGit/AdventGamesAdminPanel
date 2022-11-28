@@ -23,13 +23,26 @@ export class HighScorersComponent implements OnInit {
   };
   data: {
     fullName: string;
-    email: string;
+    userName: string;
+    userEmail: string;
     scoreDay: string;
     score: number;
   }[] = [];
-  displayedColumns: string[] = ['fullName', 'email', 'scoreDay', 'score'];
-  columnHeaders: string[] = ['NAME', 'EMAIL', 'DATE', 'SCORE'];
-  sortableColumns = ['name', 'scoreDay', 'score'];
+  displayedColumns: string[] = [
+    'fullName',
+    'userName',
+    'userEmail',
+    'scoreDay',
+    'score',
+  ];
+  columnHeaders: string[] = [
+    'FULL NAME',
+    'USER NAME',
+    'EMAIL',
+    'DATE',
+    'SCORE',
+  ];
+  sortableColumns = ['fullName', 'userName', 'scoreDay', 'score'];
   pageSizeOptions = [5, 10, 25, 50];
   timeSpan: string = '';
 
@@ -97,12 +110,14 @@ export class HighScorersComponent implements OnInit {
                   (highScorer: HighScorerInfo) => {
                     let element: {
                       fullName: string;
-                      email: string;
+                      userName: string;
+                      userEmail: string;
                       scoreDay: string;
                       score: number;
                     } = {
-                      fullName: highScorer.user.userName,
-                      email: highScorer.user.userEmail,
+                      fullName: highScorer.fullName,
+                      userName: highScorer.userName,
+                      userEmail: highScorer.userEmail,
                       scoreDay: highScorer.scoreDay,
                       score: highScorer.score,
                     };
