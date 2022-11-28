@@ -22,13 +22,21 @@ export class WinnersComponent implements OnInit {
   data: WinnerInfo[] = [];
   displayedColumns: string[] = [
     'fullName',
+    'userName',
     'userEmail',
     'city',
     'score',
     'prizeName',
   ];
-  columnHeaders: string[] = ['NAME', 'EMAIL', 'CITY', 'SCORE', 'PRIZE'];
-  sortableColumns = ['fullName', 'city', 'score'];
+  columnHeaders: string[] = [
+    'FULL NAME',
+    'USER NAME',
+    'EMAIL',
+    'CITY',
+    'SCORE',
+    'PRIZE',
+  ];
+  sortableColumns = ['fullName', 'userName', 'city', 'score'];
   pageSizeOptions = [5, 10, 25, 50];
   timeSpan: string = '';
 
