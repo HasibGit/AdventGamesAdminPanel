@@ -20,9 +20,9 @@ export const GAMES: GameCard[] = [
     cardBackgroundColor: '#FFECEC',
   },
   {
-    gameId: 'sky-racer',
-    gameTitle: 'Sky Racer',
-    gameLogoPath: '../../assets/images/sky-racer.png',
+    gameId: 'sky-way',
+    gameTitle: 'Sky Way',
+    gameLogoPath: '../../assets/images/sky-way.png',
     cardBackgroundColor: '#DEF5E5',
   },
   {
