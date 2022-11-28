@@ -13,6 +13,10 @@
     color: #949494;
   }
 
+  mat-row {
+    border-bottom-width: 0 !important;
+  }
+
   mat-row:hover {
     background-color: #f7f7f7;
     cursor: pointer;
@@ -24,6 +28,10 @@
   mat-row :last-child {
     padding-right: 0;
   }
+}
+
+.paginator-style {
+  border-top: 1px solid #0000001f !important;
 }
 
 .subscribed {
