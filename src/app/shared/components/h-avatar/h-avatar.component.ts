@@ -16,29 +16,48 @@ export class HAvatarComponent implements OnInit, AfterViewInit {
   @Input('name') fullName: string;
   tagName: string = '';
   colorCode: string;
+  colors: string[] = [
+    '#00AA55',
+    '#009FD4',
+    '#B381B3',
+    '#939393',
+    '#E3BC00',
+    '#D47500',
+    '#DC2A2A',
+  ];
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
-  ngOnInit(): void {
-    this.colorCode = this.getRandomColor();
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     let container = this.elementRef.nativeElement.querySelector('.avatar');
-    this.renderer.setStyle(container, 'backgroundColor', this.colorCode);
     this.generateNameTag();
+    this.colorCode = this.getRandomColor();
+    this.renderer.setStyle(container, 'backgroundColor', this.colorCode);
     let name = this.elementRef.nativeElement.querySelector('.user-name');
     name.innerHTML = this.tagName;
-    this.renderer.setStyle(name, 'color', this.getTextColor(this.colorCode));
+    this.renderer.setStyle(name, 'color', '#fff');
   }
 
   getRandomColor() {
-    let letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+    // let letters = '0123456789ABCDEF';
+    // let color = '#';
+    // for (let i = 0; i < 6; i++) {
+    //   color += letters[Math.floor(Math.random() * 16)];
+    // }
+    // return color;
+
+    return this.colors[this.numberFromText(this.tagName) % this.colors.length];
+  }
+
+  numberFromText(text) {
+    // numberFromText("AA");
+    const charCodes = text
+      .split('') // => ["A", "A"]
+      .map((char) => char.charCodeAt(0)) // => [65, 65]
+      .join(''); // => "6565"
+    return parseInt(charCodes, 10);
   }
 
   generateNameTag() {
