@@ -2,7 +2,7 @@
 
 <div class="container">
   <ngx-loading [show]="isFetching"
-    [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.3)'}">
+    [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.3)', fullScreenBackdrop:true}">
   </ngx-loading>
 
   <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="!isFetching">
