@@ -7,7 +7,8 @@
 
   <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="!isFetching">
     <h2 class="winners-header" fxFlex="50">Winners <span *ngIf="timeSpan.length > 0">( {{timeSpan}} )</span></h2>
-    <button style="margin-right: 40px" mat-raised-button color="primary" (click)="openModal()">Generate Winners</button>
+    <button style="margin-right: 40px; border-radius: 8px" mat-raised-button color="primary"
+      (click)="openModal()">Generate Winners</button>
   </div>
 
 
