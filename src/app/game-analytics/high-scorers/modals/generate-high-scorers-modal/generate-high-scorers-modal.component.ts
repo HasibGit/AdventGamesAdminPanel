@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { GenerateHighScorersPayload } from 'src/app/interfaces/generate-high-scorers-payload.interface';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
+import { UtilityService } from 'src/app/shared/services/utility.service';
 
 @Component({
   selector: 'app-generate-high-scorers-modal',
@@ -19,7 +20,8 @@ export class GenerateHighScorersModalComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<GenerateHighScorersModalComponent>,
     private fb: FormBuilder,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
+    private utilityService: UtilityService
   ) {}
 
   ngOnInit(): void {
@@ -80,15 +82,23 @@ export class GenerateHighScorersModalComponent implements OnInit {
   }
 
   modifyStartDate(date: Date) {
-    date.setDate(date.getDate() + 1);
-    date.setUTCHours(0, 0, 0, 0);
-    return date.toISOString();
+    let modifiedDate: string = '';
+    modifiedDate += date.getDate() + '-';
+    modifiedDate += this.utilityService.getMonthName(date.getMonth()) + '-';
+    modifiedDate += date.getFullYear() + ' ';
+    modifiedDate += '00:00:00';
+
+    return modifiedDate;
   }
 
   modifyEndDate(date: Date) {
-    date.setDate(date.getDate() + 1);
-    date.setUTCHours(23, 59, 59, 999);
-    return date.toISOString();
+    let modifiedDate: string = '';
+    modifiedDate += date.getDate() + '-';
+    modifiedDate += this.utilityService.getMonthName(date.getMonth()) + '-';
+    modifiedDate += date.getFullYear() + ' ';
+    modifiedDate += '23:59:59';
+
+    return modifiedDate;
   }
 
   closeModal() {
