@@ -72,21 +72,23 @@ export class GenerateHighScorersModalComponent implements OnInit {
       gameId: this.tokenStorageService.getSelectedGame().gameId,
       limit: data.limit,
       filter: data.timeSpan,
-      fromDate: this.modifyDate(new Date(data.fromDate)),
-      toDate: this.modifyDate(new Date(data.toDate)),
+      fromDate: this.modifyStartDate(new Date(data.fromDate)),
+      toDate: this.modifyEndDate(new Date(data.toDate)),
     };
 
     return payload;
   }
 
-  modifyDate(date: Date) {
-    let modifiedDate: string = '';
+  modifyStartDate(date: Date) {
+    date.setDate(date.getDate() + 1);
+    date.setUTCHours(0, 0, 0, 0);
+    return date.toISOString();
+  }
 
-    modifiedDate += date.getMonth() + 1 + '/';
-    modifiedDate += date.getDate() + '/';
-    modifiedDate += date.getFullYear();
-
-    return modifiedDate;
+  modifyEndDate(date: Date) {
+    date.setDate(date.getDate() + 1);
+    date.setUTCHours(23, 59, 59, 999);
+    return date.toISOString();
   }
 
   closeModal() {
