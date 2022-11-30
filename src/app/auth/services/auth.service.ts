@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserLoginData } from 'src/app/interfaces/user-login-data.interface';
@@ -20,15 +20,22 @@ export class AuthService {
   ) {}
 
   login(userLoginData: UserLoginData) {
+    let body = new URLSearchParams();
+    body.set('userName', userLoginData.userName);
+    body.set('password', userLoginData.password);
+    body.set('companyId', userLoginData.companyId);
+
+    let options = {
+      headers: new HttpHeaders().set(
+        'Content-Type',
+        'application/x-www-form-urlencoded'
+      ),
+    };
+
     return this.http.post(
       `${environment.backendUrl}${API_ENDPOINTS.AUTHENTICATE}`,
-      userLoginData,
-      {
-        headers: {
-          Accept: 'application/json',
-          skip: 'true',
-        },
-      }
+      body.toString(),
+      options
     );
   }
 
