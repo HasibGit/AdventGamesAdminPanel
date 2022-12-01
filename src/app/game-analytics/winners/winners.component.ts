@@ -26,6 +26,7 @@ export class WinnersComponent implements OnInit {
     'userEmail',
     'city',
     'score',
+    'scoreDay',
     'prizeName',
   ];
   columnHeaders: string[] = [
@@ -34,9 +35,10 @@ export class WinnersComponent implements OnInit {
     'EMAIL',
     'CITY',
     'SCORE',
+    'SCORE DAY',
     'PRIZE',
   ];
-  sortableColumns = ['fullName', 'userName', 'city', 'score'];
+  sortableColumns = ['fullName', 'userName', 'city', 'score', 'scoreDay'];
   pageSizeOptions = [5, 10, 25, 50];
   timeSpan: string = '';
 
